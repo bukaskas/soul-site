@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_files %}
+
+
+
+{% endblock  %}
+
+{% block content %}
+<main>
+
+
+<section class="section-hero">
+  <div class="hero">
+  <div class="hero-text-box">
+    <h1 class="heading-primary">
+      KITESURFING SCHOOL
+    </h1>
+    <p class="hero-description">
+      Start your journey to becoming an Independent kitesurfer with us.
+      In one of the best locations to learn and progress with long time
+      experience instructors.
+    </p>
+    <a href="{% url 'signup' %}" class="button button--full margin-right-sm">Book your stay</a>
+    <a href="#" class="button button--outline">More Info &darr;</a>
+  </div>
+    <div class="hero-img-box ">
+    <img src="static/images/kitesurefing-hero-photo.png" class="hero-img hero-img-kite" alt="Kitesurfing at soul, soul burger, accommodation at Soul kitesurfing">
+  </div>
+</div>
+</section>
+
+
+
+<section class="section-services">
+  <div class="container-custom center-text margin-bottom-md">
+  <span class="subheading"> Our kitesurfing courses </span>
+    <h2 class="heading-secondary">
+      What kitesurfing courses we offer
+    </h2>
+  </div>
+
+  <div class="container-custom grid grid--3-cols margin-bottom-md">
+
+  {%for service in services %}
+
+    <!-- CARD -->
+    <div class="service">
+      
+      <img src="{{service.image.url}}" class="service-img" alt="A View of kitesurfing at Soul kitesurfing lagoon" 
+      >
+      <div class="service-content">
+      <div class="service-tags">
+        <span class="tag">Kitesurfing</span>
+      </div>
+      <p class="service-title"> {{service.service_name}}</p>
+      <ul class="service-attributes">
+        <li class="service-attribute"><ion-icon class="service-icon" name="timer-outline"></ion-icon> <span> <strong class="strong">Duration: {{service.time|floatformat:"0"}} </strong>  hours </span></li>
+        <li class="service-attribute"> <ion-icon class="service-icon" name="cash-outline"></ion-icon> <span>  <strong class="strong"> {{service.price}} </strong> Egp </span></li>
+      </ul>
+      </div>
+    </div>
+    <!-- END CARD -->
+{% endfor %}
+
+  </div>
+   <!--  Link for all services -->
+   <div class="container-custom all-services">
+    <a href="#" class="link">All activities and courses &rarr;</a>
+  </div>
+  <!--  End Link for all services -->
+</section>
+
+<section class="section-info">
+  <div class="container-custom">
+  <h2 class="heading-secondary">SOUL experiences</h2>
+  <span class="subheading"> Things we would love to share with you </span>
+  </div>
+  <div class="container-custom grid grid--2-cols grid--center-v">
+        <!-- STEP 01 -->
+    <div class="step-text-box ">
+      <p class="step-number"> 01 </p>
+      <h3 class="heading-tertiary"> Kite control </h3>
+      <p class="step-description">
+        Learn the basic skills  for kitesurfing.
+        We will start with how to set up your kitesurfing equipment, all the safety systems and how to launch the kite.
+        After we cover the basics we will continue to practice in the water the basics of kite control and having good 
+        understanding what we will continue learning and practicing in next lessons if you wish becoming an independent 
+        kitesurfer
+      </p>
+    </div>
+    <div class="step-img-box step-1-mobile">
+      <img src="static/images/kite-control-square.jpg" alt="Learning to basic skills for kitesurfing" class="step-img">
+    </div>
+ 
+        <!-- STEP 02 -->
+    <div class="step-img-box">
+      <img src="static/images/kite-control-square.jpg" alt="Learning to to control the kite" class="step-img step2-photo">
+    </div>
+    <div class="step-text-box">
+      <p class="step-number"> 02 </p>
+      <h3 class="heading-tertiary"> Bodydraging </h3>
+      <p class="step-description">
+        This part of the kitesurfing course you will learn how the kite can
+    generate power and start learning the skills to prepare for 
+    the waterstart and use the board. After this part you will be efficient kite pilot,
+    being able to go fast and have good understanding how to use the kite to get on the board.
+      </p>
+    </div>
+   
+          <!-- STEP 03 -->
+     <div class="step-text-box">
+       <p class="step-number"> 03 </p>
+       <h3 class="heading-tertiary"> Waterstart </h3>
+       <p class="step-description">
+       Last step is to combine all skills you have been practicing and use them to get 
+       on the board and get the first rides. This part involves more multitasking and 
+       getting relaxed with the kite, so can balance better and ride with ease.
+       </p>
+     </div>
+     <div class="step-img-box">
+       <img src="static/images/soul-yoga.jpg" alt="Learning your first waterstarts" class="step-img">
+     </div>
+   </div>
+</section>
+
+
+
+
+
+
+
+  <section class='history'>
+
+    <div class="container-custom kitesurfing-info">
+
+      <h1 class="heading-primary">
+       SOUL AND KITESURFING
+      </h1>
+
+      <span class="subheading"> The story about how it started </span>
+
+      <p>
+        Kitesurfing sport is a fresh sport that started in late 90's and started growing very fast. Egypt with reputation being one of the best 
+        spots for windsports atracted the professionals to come and train here and brought it in the beginning of the sport.
+      </p>
+      <p>
+        Ras Sudr was known to be one of the best spots to train and learn this sport, thus there were plenty of international athletes coming 
+        to train here and this attracted all the people to come and learn here. 
+      </p>
+      <p>
+        This is whre we found this passion and got addicted right away, this feeling about gliding above the water freely with minimum physical effort. 
+        Being able to jump high and seeing all the beautiful scenery that Ras Sudr has to offer. 
+      </p>
+      <p>
+        We wish you join us and enjoy this beautiful location and the sport.
+      </p>
+      <p>
+        We always focus to keep up to latest standarts in teaching, organizing kitesurfing events, to push the riders to new levels and enjoy 
+        the beautiful beach life. 
+      </p>
+    </div>
+
+  </section>
+
+   
+<a href="https://wa.me/201121105926" class="float">
+  <ion-icon name="logo-whatsapp" class='my-float'></ion-icon>
+</a>
+</main>
+{% endblock  %}

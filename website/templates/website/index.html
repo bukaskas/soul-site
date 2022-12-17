@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+
+<link rel="stylesheet" href="{% static "website/index.css"%}">
+
+{% endblock  %}
+
+{% block content %}
+
+
+<main>
+  <section class="section-hero">
+    <div class="hero">
+    <div class="hero-text-box">
+      <h1 class="heading-primary">
+        Enjoy a beautiful beach at SOUL
+      </h1>
+      <p class="hero-description">
+        Come to enjoy the amazing lagoons for kitesurfing, beautiful sunsets, tasty food at the restaurant and comfortable stay at Fade hotel.
+      </p>
+      <a href="{% url 'signup' %}" class="button button--full margin-right-sm">Book your stay</a>
+      <a href="#" class="button button--outline">More Info &darr;</a>
+    </div>
+      <div class="hero-img-box">
+      <img src="static/images/Soul-hero-photo.webp" class="hero-img" alt="Kitesurfing at soul, soul burger, accommodation at Soul kitesurfing">
+    </div>
+  </div>
+  </section>
+
+  <section class="section-info">
+    <div class="container-custom">
+    <h2 class="heading-secondary">SOUL experiences</h2>
+    <span class="subheading"> Things we would love to share with you </span>
+    </div>
+    <div class="container-custom grid grid--2-cols grid--center-v">
+          <!-- STEP 01 -->
+      <div class="step-text-box ">
+        <p class="step-number"> 01 </p>
+        <h3 class="heading-tertiary"> Food by the beach </h3>
+        <p class="step-description">
+          Enjoy our gourmet quality food right on the beach and our favorite meals 
+          like Juicy Lucy Burger, Wood oven Pizza, Burger 
+        </p>
+      </div>
+      <div class="step-img-box step-1-mobile">
+        <img src="static/images/jucy-lucy-square.jpg" alt="Learning to basic skills for kitesurfing" class="step-img">
+      </div>
+   
+          <!-- STEP 02 -->
+      <div class="step-img-box">
+        <img src="static/images/kite-control-square.jpg" alt="Learning to to control the kite" class="step-img step2-photo">
+      </div>
+      <div class="step-text-box">
+        <p class="step-number"> 02 </p>
+        <h3 class="heading-tertiary"> Kitesurfing courses </h3>
+        <p class="step-description">
+          This part of the kitesurfing course you will learn how the kite
+          will pull and understand get all skills to prepare yourself for 
+          the waterstart and using the board. Many say it's most part of the course,
+          just have fun feeling the power of the wind. Finish this part of 
+        </p>
+      </div>
+     
+            <!-- STEP 03 -->
+  
+       <div class="step-text-box">
+         <p class="step-number"> 03 </p>
+         <h3 class="heading-tertiary"> Wellness </h3>
+         <p class="step-description">
+           We love to share the knowledge about things that makes us enjoy our daily life
+           more, release all the stress from daily work and regain our energy for the week. We do yoga, fittness, plan healthy nutrition.
+           We seek to bring balance in to life and work through activities, learning and bringing new experiences
+           to keep in the memory
+         </p>
+       </div>
+       <div class="step-img-box">
+         <img src="static/images/soul-yoga.jpg" alt="Learning your first waterstarts" class="step-img">
+       </div>
+     </div>
+  </section>
+
+
+  <section class="section-services">
+    <div class="container-custom center-text margin-bottom-md">
+    <span class="subheading"> Our kitesurfing courses </span>
+      <h2 class="heading-secondary">
+        What kitesurfing courses we offer
+      </h2>
+    </div>
+
+    <div class="container-custom grid grid--3-cols margin-bottom-md">
+      <!-- CARD -->
+      <div class="service">
+        <img src="static/images/kite-card.jpg" class="service-img" alt="A View of kitesurfing at Soul kitesurfing lagoon" 
+        >
+        <div class="service-content">
+        <div class="service-tags">
+          <span class="tag">Kitesurfing</span>
+        </div>
+        <p class="service-title"> Intro course</p>
+        <ul class="service-attributes">
+          <li class="service-attribute"><ion-icon class="service-icon" name="timer-outline"></ion-icon> <span> <strong class="strong"> 2 </strong>  hours </span></li>
+          <li class="service-attribute"> <ion-icon class="service-icon" name="cash-outline"></ion-icon> <span>  <strong class="strong"> 2400 </strong> Egp </span></li>
+        </ul>
+      </div>
+    </div>
+      <!-- END CARD -->
+
+     <!-- CARD -->
+     <div class="service">
+      <img src="static/images/kite-card.jpg" class="service-img" alt="A View of kitesurfing at Soul kitesurfing lagoon" 
+      >
+      <div class="service-content">
+      <div class="service-tags">
+        <span class="tag">Kitesurfing</span>
+      </div>
+      <p class="service-title"> Beginner course</p>
+      <ul class="service-attributes">
+        <li class="service-attribute"><ion-icon class="service-icon" name="timer-outline"></ion-icon> <span> <strong class="strong"> 6 </strong>  hours </span></li>
+        <li class="service-attribute"> <ion-icon class="service-icon" name="cash-outline"></ion-icon> <span>  <strong class="strong"> 7000 </strong> Egp </span></li>
+      </ul>
+    </div>
+  </div>
+    <!-- END CARD -->
+
+    <!-- List of Services -->
+    <div class="list-services">
+      <h3 class='heading-tertiary'>List of activities</h3>
+      <ul class="list">
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Kitesurfing courses</span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Kitesurfing rentals</span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Kitesurfing beach assistance</span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Yoga classes </span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Nutrition planing </span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Restaurant </span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Kite shop </span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Beach shop </span></li>
+        <li class="list-item"><ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> <span> Workshops </span></li>
+      </ul>
+    </div>
+    <!-- END List of Services -->
+    </div>
+     <!--  Link for all services -->
+     <div class="container-custom all-services">
+      <a href="#" class="link">All activities and courses &rarr;</a>
+    </div>
+    <!--  End Link for all services -->
+
+  </section>
+
+  <!--  PRICING SECTION -->
+  <section class="section-pricing">
+<!-- Heading -->
+    <div class="container-custom margin-bottom-md">
+      <span class="subheading"> Price for our products</span>
+        <h2 class="heading-secondary">
+          Kitesurfing lessons for everyone
+        </h2>
+    </div>
+<!-- Heading -->
+<div class="container-custom grid grid--2-cols grid-pricing">
+<!-- Card 1 -->
+
+  <div class="pricing-product justify--starter">
+  <header class="product-header">
+    <p class="product-name">Intro </p>
+    <p class="product-price"><span>$</span> 160 </p>
+    <p class="product-text"> 2 hours total </p>
+  </header>
+    <ul class="list"> 
+      <li class="list-item">
+        <ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> 
+        <span> 1 session of 2 hours</span>
+      </li>
+      <li class="list-item">
+        <ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> 
+        <span> 1 on 1 </span>
+      </li>
+    </ul>
+    <!-- CTA button -->
+    <div class="product-signup"> 
+       <a href="#" class="button button--full">Book now</a>
+    </div>
+  </div>
+
+  <!--  Card 2 -->
+  <div class="pricing-product">
+    <header class="product-header">
+      <p class="product-name">Beginner course </p>
+      <p class="product-price"><span>$</span> 460 </p>
+      <p class="product-text"> 6 hours total </p>
+    </header>
+    <ul class="list"> 
+      <li class="list-item">
+        <ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> 
+        <span> 6 hours over 2 or 3 days</span>
+      </li>
+      <li class="list-item">
+        <ion-icon class="list-icon" name="checkmark-circle-outline"></ion-icon> 
+        <span> 1 on 1 </span>
+      </li>
+    </ul>
+    <!-- CTA button -->
+    <div class="product-signup"> 
+      <a href="#" class="button button--full">Book now</a>
+    </div>
+  </div>
+
+  
+
+
+
+  <!-- Section closing tag -->
+  </div>
+</section>
+  
+<a href="https://wa.me/201121105926" class="float">
+  <ion-icon name="logo-whatsapp" class='my-float'></ion-icon>
+</a>
+
+
+</main>
+
+
+{% endblock  %}

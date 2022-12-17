@@ -1,0 +1,115 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name='description' content='Soulkitesurfing is a kitesurfing center and restaurant by the beach in
+  La Hacienda resort in Ras Sudr, Egypt. It is oldest kitesurfing center in Ras Sudr, Egypt with more than 10 years experience in teaching kitesurfing 
+  where you can learn kitesurfing easy' >
+  <meta name="theme-color" content="#68b9b5"/>
+  <link rel="icon" href="{% static "images/soul_favicon.png"%}"/>
+  <link rel="apple-touch-icon" href="{% static "images/soul_apple_180.png" %}"/>
+  <link rel="manifest" href="{% static "manifest.webmanifest" %}"/>
+  <title>  {% block page_title %} Soul Kitesurfing {% endblock  %} </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'general.css' %}">
+  <link rel="stylesheet" href="{% static 'app.css' %}">
+  <link rel="stylesheet" href="{% static 'queries.css' %}">
+  
+  {% block css_files %}{% endblock  %}
+  <script defer src={% static 'javascript/script.js' %}>
+
+  </script>
+  
+</head>
+<body>
+
+  <header class="header">
+    <a href="{% url 'home' %}">
+    <img class="logo" src="{% static "images/soul-logo-web.png" %}" alt="Soul-kitesurfing logo">
+    </a>
+    <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li><a class="main-nav-link" href="{% url "kitesurfing"%}">Kitesurfing</a></li>
+          <li><a class="main-nav-link" href="{% url "restaurant" %}">Restaurant</a></li>
+          <li><a class="main-nav-link" href="{% url "accommodation" %}">Accommodation</a></li>
+          <li><a class="main-nav-link nav-cta" href="{% url "home" %}">Home</a></li>
+        </ul>
+    </nav>
+    <button  class="btn--mobile-nav change-menu">
+      <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+    </button>
+  </header>
+  
+  {% comment %} <div class="container">
+    <li><a href="#">home</a></li>
+    <li><a href="#">about</a></li>
+    <li><a href="#">kitesurfing</a></li>
+    <li><a href="#">wellness</a></li>
+  </div> {% endcomment %}
+  {% block content %}
+
+  {% endblock  %}
+
+
+<footer class="footer">
+  <div class="container-custom grid grid--footer">
+    <div class="logo-col">
+      <a href="{% url 'home' %}">
+        <img class="logo" src="{% static "images/soul-logo-web.png" %}" alt="Soul-kitesurfing logo">
+        </a>
+
+<ul class="social-links">
+  <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a></li>
+  <li><a class="footer-link" href="#"><ion-icon class="social-icon" name="logo-facebook"></ion-icon></a></li>
+</ul>
+
+  <p class="copyright">Copyright &copy; <span class="year">2022</span>  by Soulkitesurfing</p>
+
+    </div>
+    <div class="address-col">
+      <p class="footer-heading">Contact us</p>
+      <address class="contacts">
+        <p class="address">
+          La Hacienda, Ras Sudr
+        </p>
+        <p class="phone-number">
+      <a class="footer-link phone-number" href="tel:+201121105926">
+      +201121105926</a></p>
+      <a class="footer-link" href="mailto:info@soulkitesurfing.com">info@soulkitesurfing.com</a>  
+    </address>
+</div>
+    <div class="nav-col">
+      <p class="footer-heading">Account</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#">Create account</a></li>
+        <li><a class="footer-link" href="#">Sign in</a></li>
+      </ul>
+
+    </div>
+    <div class="nav-col">
+      <p class="footer-heading">Company</p>
+      <ul class="footer-nav">
+        <li><a class="footer-link" href="#">About us</a></li>
+        <li><a class="footer-link" href="#">For Business</a></li>
+        <li><a class="footer-link" href="#">Partners</a></li>
+        <li><a class="footer-link" href="#">Careers</a></li>
+      </ul>
+    </div>
+    
+  </div>
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
