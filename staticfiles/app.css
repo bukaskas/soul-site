@@ -1,0 +1,772 @@
+
+
+/* ************************* */
+/* SECTION HERO */
+/* ************************* */
+
+.section-hero{
+  background-color: #d3e7e6;
+  /* top ,side, down */
+  padding:6.4rem 3.2rem 6.4rem;
+  /* height:100vh; */
+  }
+  
+  .hero{
+    max-width:120rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:9.6rem;
+    align-items: center;
+    padding: 3.2rem;
+  }
+  
+  .hero-description{
+    font-size:2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+  }
+  
+  .hero-img {
+    width: 100%;
+  }
+  
+  
+  
+  /* ************************* */
+          /* HEADER */
+  /* ************************* */
+  .header{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--tint);
+    height:9.6rem;
+    align-items: center;
+    padding:0 1.2rem 0;
+    position:relative;
+  }
+  
+  .logo{
+    height: 9rem;
+  }
+  
+  
+  /* ************************* */
+          /* NAVIGATION */
+  /* ************************* */
+  .main-nav-list{
+    list-style: none;
+    display: flex;
+    gap:3.2rem;
+    padding-right: 1rem;
+  }
+  
+  .main-nav-link:link,
+  .main-nav-link:visited{
+    text-decoration: none;
+    color:#333;
+    font-weight: 500;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+  }
+  .main-nav-link:hover,
+  .main-nav-link:active{
+    color:#228580;
+   
+  }
+  
+  .main-nav-link.nav-cta:link,
+  .main-nav-link.nav-cta:visited{
+    color:#fff;
+    padding: 1.2rem 2.4rem;
+    border-radius:9px;
+    background-color: #228580;
+  }
+  
+  .main-nav-link.nav-cta:hover,
+  .main-nav-link.nav-cta:active{
+    background-color: #68b9b5;
+  }
+  
+  /* -  - - - - - - - - - - - - */
+  /*  mobile navigation */
+  /* -  - - - - - - - - - - - - */
+  
+  .btn--mobile-nav{
+    border:none;
+    background: none;
+    cursor:pointer;
+    display: none;
+  }
+  
+  .icon-mobile-nav{
+    height: 4.8rem;
+    width: 4.8rem;
+    color:#333;
+  }
+  
+  /* .icon-mobile-nav[name="menu-outline"]{
+    display: none;
+  } */
+  
+  .icon-mobile-nav[name="close-outline"]{
+    display: none;
+  }
+  
+  /* ************************* */
+          /* NAVIGATION */
+  /* ************************* */
+  
+  
+  /* ************************* */
+          /* INFO PART */
+  /* ************************* */
+  
+  .section-info{
+    padding: 9.6px 0;
+  }
+  
+  .step-number{
+    font-size:9.8rem;
+    font-weight:600;
+    color:#99c8c6;
+    margin-bottom: 1.2rem;
+  }
+  
+  .step-img{
+    width: 85%;
+    border-radius: 50%;
+  }
+  
+  .step-description{
+    line-height: 1.8;
+    font-size: 1.8rem;
+  }
+  
+  .step-img-box{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    position:relative;
+    border-radius: 50%;
+  }
+  
+  .step-img-box::before,
+  .step-img-box::after {
+    content:" ";
+    display:block;
+    /* height:60%; */
+    /* 60% of parent's element */
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius: 50%;
+  }
+  
+  .step-img-box::before{
+    width:95%;
+    padding-bottom: 95%;
+    background-color: rgb(66, 66, 66);
+    z-index:-2;
+  }
+  
+  .step-img-box::after{
+    background-color: #a7cecc;
+    width:90%;
+    padding-bottom: 90%;
+    z-index:-1;
+  }
+  
+  ul{
+    list-style: none;
+  }
+  
+  /* ************************* */
+          /* END OF INFO PART */
+  /* ************************* */
+  
+  /* ************************* */
+          /* SERVICE */
+  /* ************************* */
+  .section-services{
+    margin-top: 3.2rem;
+  }
+  
+  .service{
+    box-shadow: 0 2.4rem 4.8rem rgba(0,0,0,0.075);
+    border-radius:9px;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  
+  .service:hover{
+    transform: translateY(-1.2rem);
+    box-shadow: 0 3.2rem 6.4rem rgba(0,0,0,0.06);
+  }
+  
+  .service-content{
+    padding-top: 1rem;
+    padding: 1.2rem;
+  }
+  
+  .service-img{
+    width: 100%;
+  }
+  
+  .service-title{
+    font-size: 2.4rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 3.2rem;
+  }
+  
+  .service-attributes{
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    gap:1.2rem;
+  }
+  
+  .service-icon{
+    height:2.4rem;
+    width: 2.4rem;
+    color:#228580;
+  }
+  
+  .service-attribute{
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap:1.6rem;
+  }
+  
+  .tag {
+    display: inline-block;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    background-color: #68b9b5;
+    color: #333;
+    border-radius: 100px;
+  }
+  
+  .service-tags{
+    margin-top: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  strong{
+    font-weight: 500 !important;
+  }
+  
+  .list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap:1.2rem;
+  }
+  
+  .list-icon{
+    width:3rem;
+    height: 3rem;
+    color:#228580;
+  }
+  
+  .list-item{
+    font-size:1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  
+  .all-services{
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  
+  /* ************************* */
+      /* END OF SERVICE */
+  /* ************************* */
+  
+  
+  
+  /* ************************* */
+          /* PRICING SECTION */
+  /* ************************* */
+  .section-pricing{
+    margin-top: 3.2rem;
+    padding-bottom: 6.4rem;
+  }
+  
+  .pricing-product{
+    background-color:#aed8d6;
+    border-radius: 0.9rem;
+    padding:2.4rem;
+    width: 75%;
+  }
+  
+  
+  .product-header{
+    text-align: center;
+    margin-bottom: 2.4rem;
+  }
+  
+  .product-name{
+    color:#228580;
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75;
+    margin-bottom: 3.2rem;
+  }
+  
+  .product-price{
+    font-size: 6.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.2rem;
+  }
+  .product-price span{
+    font-size:3rem;
+    font-weight: 500;
+    /* margin: 0.3rem; */
+  }
+  
+  .product-text{
+    font-size: 1.2rem;
+    line-height:1.6;
+    color: #777;
+  }
+  
+  .product-signup{
+    margin-top:4.8rem;
+    text-align:center;
+  }
+  
+  .justify--starter{
+    justify-self: end;
+  }
+  
+  /* ************************* */
+      /* PRICING SECTION */
+  /* ************************* */
+  
+  
+  /* ************************* */
+          /* FOOTER */
+  /* ************************* */
+  .footer {
+    padding: 6.4rem 0;
+    border-top:1px solid #eee
+  }
+  
+  .grid--footer{
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+  }
+  
+  .footer-logo{
+    display:block;
+    margin-bottom:3.2rem;
+  }
+  
+  .logo-col{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .social-links{
+    list-style:none;
+    display: flex;
+    justify-content: center;
+    gap:1.8rem;
+  }
+  .copyright{
+    font-size:1.2rem;
+    color:#767676;
+    margin-top: auto;
+  }
+  
+  .social-icon{
+    height:3.2rem;
+    width: 3.2rem;
+    padding-bottom: 1.2rem;
+  }
+  
+  .address{
+   margin-bottom: 1.8rem;
+  }
+  
+  .contacts{
+    font-style: normal;
+    font-size:1.6rem;
+    line-height: 1.6rem;
+  }
+  
+  
+  .footer-heading{
+    font-size: 2.2rem;
+    font-weight:500;
+    margin-bottom:3.2rem;
+  }
+  
+  .footer-nav{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap:1.8rem;
+  }
+  
+  .footer-link:link,
+  .footer-link:visited{
+    text-decoration: none;
+    font-size:1.6rem;
+    /* lightest grey allowed  */
+    color:#767676;
+    transition:all 0.3s;
+  }
+  
+  .footer-link:hover,
+  .footer-loink:active{
+    color: #5e5e5e;
+    font-size:1.8rem;
+  }
+  
+  /* - - - - - - - */
+  /* end of footer */
+  /* - - - - - - - */
+  
+  /* - - - - - - - */
+   /* waiver form */
+  /* - - - - - - - */
+   
+  .waiver-content{
+    font-size: 1.8rem;
+  }
+  
+  .waiver-ul > li{
+    list-style-type: circle;
+    font-size: 2rem;
+  }
+  
+  .waiver-ul > li::marker {
+    font-size: 3rem;
+  }
+  
+  /* .waiver-ul > li::before{
+    content:"·";
+    font-size:5rem;
+    vertical-align:middle; 
+    line-height:2rem;
+  } */
+  
+  ::marker{
+    font-size: 2rem;
+    height:1rem;
+    width: 1rem;
+  }
+  
+  
+  
+  /* - - - - - - - */
+   /* end of waiver form */
+  /* - - - - - - - */
+   
+  
+  
+  
+  /* - - - - - - - */
+   /* sign up form */
+  /* - - - - - - - */
+   
+  
+  .form-container{
+    max-width: 45rem;
+  }
+  
+  .phone-number{
+    margin-bottom: 1.4rem;
+  }
+  
+  .form-info{
+    display: flex;
+    justify-content: center;
+    padding-top:3.2rem;
+  }
+  
+  .form-container{
+    display:flex;
+    padding:3.2rem 1.2rem;
+    flex-direction: column;
+    gap: 1.2rem;
+  
+  
+  
+  }
+  
+  input[type='text'],input[type='email'],input[type='number']{
+    box-sizing: border-box;
+    border:none;
+    border-bottom: 2px solid #333;
+    height:3.5rem;
+    font-size:1.8rem;
+    transition: all 0.5s ease-in;
+  }
+  input[type='text']:focus{
+    font-size: 2.4rem;
+    outline: none;
+    border-bottom: 2px solid #228580;
+  }
+  
+  input[type='email']:focus{
+    font-size: 2.4rem;
+    outline: none;
+    border-bottom: 2px solid #228580;
+  }
+  
+  input[type='submit']{
+    position:relative;
+    font-size: 2.4rem;
+    font-weight: 600;
+    padding: 1.2rem;
+    border: none;
+    transition-duration: 0.4s;
+  }
+  input[type='submit']:after{
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #68b9b5;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0,8s;
+  }
+  
+  input[type='submit']:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+  
+  label{
+    font-size: 1.8rem;
+  }
+  
+  /* gender choice */
+  .choice{
+  
+  }
+  
+  
+  div.choice > div {
+    display: flex;
+    align-items: center;
+    padding:1rem;
+  }
+  
+  input[type='checkbox']{
+  
+  }
+  
+  input[type='radio']{
+    
+    height:1.8rem;
+    width: 1.8rem;
+  }
+  /* terms checkbox */
+  input[name='terms']{
+    height:3.2rem;
+    width:3.2rem;
+  }
+  
+  .terms{
+    display:flex;
+    align-items: center;
+    gap:3.2rem;
+    justify-content: center;
+    padding-bottom: 3.2rem;
+  }
+  
+  .check-container{
+    display:inline-flex;
+    align-items: center;
+    cursor:pointer;
+    gap: 1.2rem;
+  }
+  
+  .terms__input {
+    display:none;
+  }
+  
+  .checkbox__box{
+    width:3rem;
+    height:3rem;
+    border: 2px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    flex-shrink:0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  
+  .checkbox__box::after{
+    content:'\2714';
+    color:#ffff;
+    transform: scale(0) ;
+  }
+  
+  .terms__input:checked + .checkbox__box{
+    background-color: #228580;
+    border-color: #228580;
+    
+  }
+  
+  .terms__input:checked + .checkbox__box::after{
+   transform:scale(1)
+  }
+  /* end of terms checkbox */
+  
+  /* male checkbox */
+  
+  .check-container-male{
+    display:inline-flex;
+    align-items: center;
+    cursor:pointer;
+    gap: 1.2rem;
+  }
+  
+  .terms__input-male {
+    display:none;
+  }
+  
+  .checkbox__box-male{
+    width:3rem;
+    height:3rem;
+    border: 2px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    flex-shrink:0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  
+  .checkbox__box-male::after{
+    content:'\2714';
+    color:#ffff;
+    transform: scale(0) ;
+  }
+  
+  .terms__input-male:checked + .checkbox__box-male{
+    background-color: #228580;
+    border-color: #228580;
+    
+  }
+  
+  .terms__input-male:checked + .checkbox__box-male::after{
+   transform:scale(1)
+  }
+  /* end of terms checkbox */
+  /* male checkbox */
+  
+  
+  .check-container-female{
+    display:inline-flex;
+    align-items: center;
+    cursor:pointer;
+    gap: 1.2rem;
+  }
+  
+  .terms__input-female{
+    display:none;
+  }
+  
+  .checkbox__box-female{
+    width:3rem;
+    height:3rem;
+    border: 2px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    flex-shrink:0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  
+  .checkbox__box-female::after{
+    content:'\2714';
+    color:#ffff;
+    transform: scale(0) ;
+  }
+  
+  .terms__input-female:checked + .checkbox__box-female{
+    background-color: #228580;
+    border-color: #228580;
+    
+  }
+  
+  .terms__input-female:checked + .checkbox__box-female::after{
+   transform:scale(1)
+  }
+  /* end of terms checkbox */
+  
+  /* - - - - - - - */
+   /* sign up form */
+  /* - - - - - - - */
+  
+  /* - - - - - - -  - - - */
+  /* Kitesurfing page */
+  /* - - - - - - -  - - - */
+  
+  .kite-photo{
+    display: block;
+  
+  }
+  
+  .kitesurfing-info{
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+  }
+   
+  /* - - - - - - - - -  */
+  /* kitesurfing page start */
+  /* - - - - - - - - -  */
+  
+  .about-kitesurfing{
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url('images/Kite_window.jpg');
+    background-size: cover;
+    color:white;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .cta-buttons{
+    display: flex;
+    justify-content: center;
+    padding-top: 1.8rem;
+    padding-bottom: 3.2rem;
+  }
+  
+  .white{
+    color:white;
+  }
+  
+  .flexx{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content{
+    max-width: 50rem;
+  }
+  
+  
