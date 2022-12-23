@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Customer(models.Model):
@@ -8,11 +9,20 @@ class Customer(models.Model):
     terms = models.BooleanField(default=False,null=True)
     gender = models.CharField(max_length=8,null=True)
     weight = models.IntegerField(null=True)
+    created = models.DateTimeField(editable=False, null=True)
+    modified = models.DateTimeField(null=True,blank=True)
 
 
     # many bookings
     def __str__(self):
       return f"{self.name},{self.phone_nr}"
+    
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()
+        return super(Customer, self).save(*args, **kwargs)
 
 class Service(models.Model):
     service_name = models.CharField(max_length=20)
@@ -28,13 +38,13 @@ class Service(models.Model):
 class Booking(models.Model):
     date = models.DateField(verbose_name="Booking date")
     customer_name = models.CharField(max_length=100)
-    customer_fname = models.CharField(max_length=100)
-  #  nop = number of people
+    customer_fname = models.CharField(max_length=100,null=True)
     contact_number= models.CharField(max_length=30,null=True)
-    nop = models.IntegerField()
+    nop = models.IntegerField(null=True)
     service = models.ForeignKey(Service,on_delete=models.SET_NULL, null=True,related_name="booking")
+    
+    @property
     def customer_full_name(self):
-     
        return f"{self.customer_name} {self.customer_fname}"
     # one service
     # one customer

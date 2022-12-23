@@ -1,12 +1,29 @@
+{% extends 'base.html' %}
 {% load static %}
 {% block css_files %}
 
-<link rel="stylesheet" href="{% static "website/index.css"%}">
-
 {% endblock  %}
-<h1>Restaurant page</h1>
+
 {% block content %}
-
-
+<section class="section-hero">
+  <div class="hero">
+  <div class="hero-text-box">
+    <h1 class="heading-primary">
+      Soul Kitesurfing Restaurant
+    </h1>
+    <p class="hero-description">
+      Cosy boho styled restaurant by the sea, where you can taste gourmet quality ingredients 
+      like burgers, salads, wood oven pizza and deserts. Try and our long time favorites Alfredo
+      pasta, Jucy Lucy burger, Pizza or Banofee pie
+    </p>
+    <a href="{% url 'menu' %}" class="button button--full margin-right-sm">Menu</a>
+    {% comment %} <a href="#" class="button button--outline">More Info &darr;</a> {% endcomment %}
+  </div>
+    <div class="hero-img-box ">
+    <img src="{% static 'images/food-hero-photo.webp' %}" class="hero-img hero-img-kite" alt="Our favorite food by the beach at Soul kitesurfing">
+  </div>
+</div>
+</section>
+{% comment %} static/images/food-hero-photo.webp {% endcomment %}
 
 {% endblock  %}

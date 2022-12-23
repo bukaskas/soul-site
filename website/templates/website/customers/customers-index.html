@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+
+<script defer src={% static 'javascript/search.js' %}>
+</script>
+{% endblock  %}
+
+{% block content %}
+<section class="container-custom">
+  
+
+<h1 class="heading-primary">Soul kitesurfers</h1>
+ 
+<div class="search-wrapper" >
+  <label for="serch">Search Users</label>
+  <input type="search" id="search" data-search>
+</div>
+<div class="card">
+    <span class="subheading"> Name </span>
+    <span class="subheading"> Phone number </span>
+    <span class="subheading"> Email </span>
+ </div>
+
+<!-- python  
+<div class="user-cards">
+ {% for customer in object_list %}
+ <div class="card">
+  <p class="card-header"> {{ customer.name }} </p>
+  <p class="card-body"> {{ customer.phone_nr }} </p>
+  <p> {{ customer.email }} </p>
+ </div>
+ {% endfor %} 
+</div>
+
+end python -->
+
+<template data-user-template>
+  <div class="card">
+    <h2 class='name' data-name></h2>
+    <p class='phone_nr' data-phone></p>
+    <p class='email' data-email></p>
+  </div>
+</template>
+
+<div class='customers' data-user-cards-container>
+
+</div>
+
+</section>
+{% endblock  %}

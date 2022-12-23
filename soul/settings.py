@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from os import getenv
+import environ
 
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,13 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^=ij!ds8u7swy=-i#it_%z=17c_v)-0w^-$$=u@w2c52--+yw('
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-
+    '127.0.0.1:8000',
+    'http://localhost:8000',
+    '192.168.100.232:8000',
+    '192.168.100.1:8000',
+    '192.168.226.22',
+    '192.168.226.22:8000'
 ]
 
 
@@ -42,7 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'website',
+    "corsheaders",
+    'jquery',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +64,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
 ]
 
 ROOT_URLCONF = 'soul.urls'
@@ -84,11 +101,11 @@ WSGI_APPLICATION = 'soul.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER':'',
-        'PASSWORD':'',
-        'HOST':'',
-        'PORT':''
+        'NAME': env('DATABASE_NAME'),
+        'USER':env('DABASE_USER'),
+        'PASSWORD':env('DATABASE_PASS'),
+        'HOST':'django-soul.cux2qofsd1mq.us-east-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 

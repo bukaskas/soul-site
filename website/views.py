@@ -6,12 +6,13 @@ from django.views.generic.base import TemplateView
 from django.urls import reverse
 from .forms import BookingForm, CustomerForm
 from django.views.generic.edit import CreateView
-from django.http import HttpResponseRedirect
+from django.http import FileResponse
 from .models import Service,Customer,Booking
 from datetime import datetime
 from django.db.models import Sum
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+
 
 
 
@@ -36,6 +37,11 @@ class RestaurantView(View):
   def get(self,request):
     return render(request,"website/restaurant.html")
 
+
+def menu_view(request):
+  menu = open('/Users/audriusbksks/Documents/django/soul/static/pdf/soul_menu.pdf','rb')
+  response = FileResponse(menu)
+  return response
 class AccommodationView(View):
   def get(self,request):
     return render(request,"website/accommodation.html")
@@ -44,27 +50,16 @@ class AccommodationView(View):
 class CreateBooking(CreateView):
     model=Booking
     form_class = BookingForm
-    template_name='soul_customers/book.html'
+    template_name='website/bookings/book.html'
     success_url="thank-you"
 
     def form_valid(self,form):
 
-      # date_clean = date.fromisoformat(date_form)
-      today = datetime.now()
-      today_string = today.strftime("%Y-%m-%d")
-      print("---- BOOKING DATE ----")
 
-      print("STRING:",today_string)
-      print("---- BOOKING DATE ----")
+      today = datetime.now()
+      
       return super().form_valid(form)
   
-
-
-# class SignUpView(CreateView):
-#     model = Customer
-#     fields = "__all__"
-#     template_name ="soul_customers/signup.html"
-#     success_url = "thank-you"
 
   
 class ThankYouView(View):
@@ -134,8 +129,6 @@ class BookingsByDateView(ListView):
 
 
     def get_queryset(self,*args,**kwargs):
-
-
       return Booking.objects.filter(date=self.kwargs.get('date'))
 
     def get_context_data(self, **kwargs):
@@ -168,4 +161,11 @@ def sign_up_view(request):
   context = {
     'form':form
   }
-  return render(request,'soul_customers/sign_up.html',context)
+  return render(request,'website/customers/sign_up.html',context)
+
+class CustomerListView(ListView):
+    template_name = "website/customers/customers-index.html"
+    model = Customer
+    paginate_by = 10
+    context_object_name= "bookings"
+

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block css_files %}
+
+<link rel="stylesheet" href="{% static "soul_customers/book.css"%}">
+
+{% endblock  %}
+
+{% block content %}
+
+<form class="container-fluid form-control m-3 form-class" method="POST">
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label class="form-label">Pick a date of arrival</label>
+    <div class="form-text">{{ form.date }}</div>
+  </div>
+  
+  <div class="mb-3">
+    <label class="form-label">First Name</label>
+    <div class="form-text">{{ form.customer_name }}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Family Name</label>
+    <div class="form-text">{{ form.customer_fname }}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Contact number</label>
+    <div class="form-text">{{ form.contact_number }}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">How many people coming</label>
+    <div class="form-text">{{ form.nop }}</div>
+  </div> 
+
+  <div class="mb-3">
+    <label class="form-label">How many people coming</label>
+    <div class="form-text">{{ form.service}}</div>
+  </div> 
+
+  {% comment %} {{form.as_p}} {% endcomment %}
+
+  <button type="submit" class="btn btn-primary">Sign up</button>
+</form>
+
+{% endblock %}

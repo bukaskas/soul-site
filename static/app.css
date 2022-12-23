@@ -769,4 +769,56 @@
     max-width: 50rem;
   }
   
+
+
+ .card{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.8rem;
+  margin: 1.2rem;
+  font-size: 1.8rem;
+ }
+
+ .card-list{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.8rem;
+  margin: 1.2rem;
+  font-size: 1.8rem;
+ }
+
+.phone_nr, a:link{
+  text-decoration: none;
+}
+
+.hide{
+  display: none;
+}
+
+/* - - - - - - - - -  */
+  /* kitesurfing page end */
+  /* - - - - - - - - -  */
+
+  /* - - - - - - - - -  */
+  /* restaurant page */
+  /* - - - - - - - - -  */
+
+.text-center{
+  text-align: center;
+  margin-top: 1.8rem;
+}
+
+.hero-text{
+  display: block;
+  text-align: center;
+  padding-top: 1.8rem;
+}
+
+  .about-menu{
+    background: #b7e9e7;
+  }
+
+  .food-photo{
+    width: 100%;
+  }
   

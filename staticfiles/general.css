@@ -154,6 +154,10 @@ body{
   margin-bottom: 6.4rem;
 }
 
+.mb-2{
+  margin-bottom: 2rem !important;
+}
+
 .button:link,
 .button:visited {
 display: inline-block;
@@ -292,3 +296,8 @@ ul.list{
 /* - - - - - - - - - */
  /* end whatsapp button */
 /* - - - - - - - - - */
+
+.card {
+  display:flex;
+  margin:2rem;
+}
