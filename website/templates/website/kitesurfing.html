@@ -49,7 +49,7 @@
     <!-- CARD -->
     <div class="service">
       
-      <img src="{{service.image.url}}" class="service-img" alt="A View of kitesurfing at Soul kitesurfing lagoon" 
+      <img src="{% if service.image.url != null %}{{service.image.url}}{%else%}'#'{% endif %}" class="service-img" alt="A View of kitesurfing at Soul kitesurfing lagoon" 
       >
       <div class="service-content">
       <div class="service-tags">
@@ -142,25 +142,24 @@
 
       <span class="subheading"> The story about how it started </span>
 
-      <p>
+      <p class='story'>
         Kitesurfing sport is a fresh sport that started in late 90's and started growing very fast. Egypt with reputation being one of the best 
         spots for windsports atracted the professionals to come and train here and brought it in the beginning of the sport.
       </p>
-      <p>
+      <p class='story'>
         Ras Sudr was known to be one of the best spots to train and learn this sport, thus there were plenty of international athletes coming 
         to train here and this attracted all the people to come and learn here. 
       </p>
-      <p>
+      <p class='story'>
         This is whre we found this passion and got addicted right away, this feeling about gliding above the water freely with minimum physical effort. 
         Being able to jump high and seeing all the beautiful scenery that Ras Sudr has to offer. 
       </p>
-      <p>
-        We wish you join us and enjoy this beautiful location and the sport.
+      <p class='story'>
+        We wish you join us to enjoy this beautiful location and the sport.
       </p>
-      <p>
-        We always focus to keep up to latest standarts in teaching, organizing kitesurfing events, to push the riders to new levels and enjoy 
-        the beautiful beach life. 
-      </p>
+      {% comment %} <p class='story'>
+        We always focus to keep up to latest standarts in teaching, organizing kitesurfing events, to push and enjoy the process of learning and beach life. 
+      </p> {% endcomment %}
     </div>
 
   </section>

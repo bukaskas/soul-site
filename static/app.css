@@ -769,8 +769,6 @@
     max-width: 50rem;
   }
   
-
-
  .card{
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -793,6 +791,16 @@
 
 .hide{
   display: none;
+}
+
+.history{
+  margin-bottom: 1.8rem;
+}
+
+.story{
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  margin-bottom: 1.2rem;
 }
 
 /* - - - - - - - - -  */
