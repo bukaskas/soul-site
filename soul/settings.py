@@ -66,7 +66,6 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
 ]
 
 CORS_ALLOWED_ORIGINS = [
