@@ -556,9 +556,9 @@
   }
   
   /* gender choice */
-  /* .choice{
+  .choice{
   
-  } */
+  }
   
   
   div.choice > div {
@@ -567,9 +567,9 @@
     padding:1rem;
   }
   
-  /* input[type='checkbox']{
+  input[type='checkbox']{
   
-  } */
+  }
   
   input[type='radio']{
     
@@ -769,7 +769,64 @@
     max-width: 50rem;
   }
   
-  /* - - - - - - -  - - - */
-  /* Customer page */
-  /* - - - - - - -  - - - */
+ .card{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.8rem;
+  margin: 1.2rem;
+  font-size: 1.8rem;
+ }
+
+ .card-list{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.8rem;
+  margin: 1.2rem;
+  font-size: 1.8rem;
+ }
+
+.phone_nr, a:link{
+  text-decoration: none;
+}
+
+.hide{
+  display: none;
+}
+
+.history{
+  margin-bottom: 1.8rem;
+}
+
+.story{
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  margin-bottom: 1.2rem;
+}
+
+/* - - - - - - - - -  */
+  /* kitesurfing page end */
+  /* - - - - - - - - -  */
+
+  /* - - - - - - - - -  */
+  /* restaurant page */
+  /* - - - - - - - - -  */
+
+.text-center{
+  text-align: center;
+  margin-top: 1.8rem;
+}
+
+.hero-text{
+  display: block;
+  text-align: center;
+  padding-top: 1.8rem;
+}
+
+  .about-menu{
+    background: #b7e9e7;
+  }
+
+  .food-photo{
+    width: 100%;
+  }
   
