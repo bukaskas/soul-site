@@ -32,7 +32,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = str(os.environ.get('DEBUG')) == '1'
 
 ALLOWED_HOSTS = [
-    'soul-kitesurfing.up.railway.app'
+    'soul-kitesurfing.up.railway.app',
+    '*'
 ]
 
 # if not DEBUG:
