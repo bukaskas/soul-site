@@ -12,6 +12,7 @@ from datetime import datetime
 from django.db.models import Sum
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -142,6 +143,7 @@ class BookingsByDateView(ListView):
 
       return context 
 
+@csrf_exempt
 def sign_up_view(request):
   form = CustomerForm()
   if request.method == 'POST':

@@ -84,7 +84,8 @@ CSRF_TRUSTED_ORIGINS=[
    'https://soul-kitesurfing.up.railway.app/',
    'soul-kitesurfing.up.railway.app',
    'https://soul-kitesurfing.up.railway.app/signup',
- 'https://web-production-7494.up.railway.app'
+ 'https://web-production-7494.up.railway.app',
+ '*'
 ]
 
 ROOT_URLCONF = 'soul.urls'
