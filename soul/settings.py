@@ -33,7 +33,7 @@ DEBUG = str(os.environ.get('DEBUG')) == '1'
 
 ALLOWED_HOSTS = [
     'soul-kitesurfing.up.railway.app',
-    '*'
+
 ]
 
 # if not DEBUG:
@@ -50,12 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
+    'storages',
     'rest_framework',
     'website',
     "corsheaders",
     'jquery',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -68,20 +68,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+
 ]
 
 CORS_ALLOWED_ORIGINS = [
    'https://soul-kitesurfing.up.railway.app',
-  
-
 ]
 
 CSRF_TRUSTED_ORIGINS=[
-
    'https://soul-kitesurfing.up.railway.app',
    'https://*.railway.app/'
-   
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -165,7 +161,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
-# STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 STATIC_URL = 'static/'
 # Default primary key field type
@@ -184,3 +180,19 @@ MEDIA_URL = '/images/'
 USE_L10N = False
 
 DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d')
+
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_STORAGE_REGION_NAME = 'EU (Frankfurt) eu-central-1'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
