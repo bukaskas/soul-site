@@ -78,12 +78,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS=[
-    'soul-kitesurfing.up.railway.app',
+
    'https://soul-kitesurfing.up.railway.app',
-   'soul-kitesurfing.up.railway.app',
    'https://*.railway.app/'
    
- 
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
