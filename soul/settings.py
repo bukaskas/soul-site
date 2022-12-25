@@ -33,7 +33,7 @@ DEBUG = str(os.environ.get('DEBUG')) == '1'
 
 ALLOWED_HOSTS = [
     'soul-kitesurfing.up.railway.app',
-
+    'localhost'
 ]
 
 # if not DEBUG:
