@@ -71,15 +71,19 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'soul-kitesurfing.up.railway.app',
+   'soul-kitesurfing.up.railway.app',
    'https://soul-kitesurfing.up.railway.app/',
-   'soul-kitesurfing.up.railway.app'
+   'soul-kitesurfing.up.railway.app',
+   'https://soul-kitesurfing.up.railway.app/signup'
+
 ]
 
 CSRF_TRUSTED_ORIGINS=[
     'soul-kitesurfing.up.railway.app',
    'https://soul-kitesurfing.up.railway.app/',
-   'soul-kitesurfing.up.railway.app'
+   'soul-kitesurfing.up.railway.app',
+   'https://soul-kitesurfing.up.railway.app/signup'
+
 ]
 
 ROOT_URLCONF = 'soul.urls'
