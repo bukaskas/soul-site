@@ -38,9 +38,7 @@ ALLOWED_HOSTS = [
 # if not DEBUG:
 #     ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
 
-CSRF_TRUSTED_ORIGINS=[
-    'soul-kitesurfing.up.railway.app'
-]
+
 
 # Application definition
 
@@ -73,7 +71,13 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
+    'soul-kitesurfing.up.railway.app',
+   'https://soul-kitesurfing.up.railway.app/'
+]
+
+CSRF_TRUSTED_ORIGINS=[
+    'soul-kitesurfing.up.railway.app',
+   'https://soul-kitesurfing.up.railway.app/'
 ]
 
 ROOT_URLCONF = 'soul.urls'
