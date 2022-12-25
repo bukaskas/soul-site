@@ -72,7 +72,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-   'soul-kitesurfing.up.railway.app',
    'https://soul-kitesurfing.up.railway.app',
   
 
