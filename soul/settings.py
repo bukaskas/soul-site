@@ -162,6 +162,10 @@ USE_TZ = True
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/images/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
+
 
 STATIC_URL = 'static/'
 # Default primary key field type
@@ -173,9 +177,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     BASE_DIR/'static'
 # ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
-MEDIA_URL = '/images/'
 
 USE_L10N = False
 
