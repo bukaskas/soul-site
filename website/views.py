@@ -169,5 +169,5 @@ class CustomerListView(ListView):
     template_name = "website/customers/customers-index.html"
     model = Customer
     paginate_by = 10
-    context_object_name= "bookings"
+    context_object_name= "customers"
 
