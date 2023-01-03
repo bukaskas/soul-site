@@ -25,7 +25,7 @@ const userCardContainer = document.querySelector('[data-user-cards-container]')
 
 const xhr = new XMLHttpRequest();
 
-xhr.open('GET',"https://soul-kitesurfing.up.railway.app//get-data/");
+xhr.open('GET',"https://soul-kitesurfing.up.railway.app/get-data/");
 
 xhr.responseType = 'json';
 
