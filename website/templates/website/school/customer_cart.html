@@ -43,7 +43,7 @@
         <ion-icon name="cash-outline"></ion-icon> {{item.product.price}}
       </div>
       <div class="oi-remove">
-        <ion-icon name="trash-outline"></ion-icon>
+        <a href="{% url 'delete-du' item.id %}"><ion-icon name="trash-outline"></ion-icon></a>
       </div>
     </div>
     {% endfor %}

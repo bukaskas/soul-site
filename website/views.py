@@ -17,6 +17,7 @@ from .utils import searchCustomers, beach_use, sum_payments
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .filters import PaymentFilter
+from django.http import HttpResponseRedirect
 
 
 
@@ -258,9 +259,9 @@ def delete_dayuse(request, pk):
   order_item = OrderItem.objects.get(id=pk)
   if request.method == 'POST':
     order_item.delete()
-    order_item.order.customer.credit += order_item.product.credit
+    order_item.order.customer.credit -= order_item.product.credit
     order_item.order.customer.save(update_fields=['credit'])
-    return redirect('today-du')
+    return redirect('customer-view',pk=order_item.order.customer.id)
   context = {
     'object':order_item
   }
