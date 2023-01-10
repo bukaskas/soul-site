@@ -57,7 +57,7 @@
         <form action="" method="POST">
           {% csrf_token %}
           <input type="integer" hidden value={{item.id}} name='service-id'>
-          <input type="submit" value="Add">
+          <input type="submit" value="Add" class="button button--full">
         </form>
       </div>
       {% endfor %}

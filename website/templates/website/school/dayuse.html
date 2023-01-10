@@ -27,22 +27,23 @@
    
   <h2 class='heading-secondary'> Number of Beach Use {{today}}: </h2>
   <h2 class='heading-secondary'> <a href="{% url 'today-du'%}">{{total_bu}}</a>  </h2>
-
+<div class="order-items">
 {% for customer in customers %}
 
-  <div class="card">
-    <h2 class='name' data-name>{{customer.name}}</h2>
-    <p class='phone_nr' data-phone>{{customer.phone_nr}}</p>
+  <div class="order-item">
+    <h2 class='oi-name' ><ion-icon name="person-circle-outline"></ion-icon> {{customer.name}}</h2>
+    <p class='oi-price' ><ion-icon name="call-outline"></ion-icon>{{customer.phone_nr}}</p>
     {% comment %} <p class='email' data-email>{{customer.email}}</p> {% endcomment %}
+    <p class='oi-price' ><ion-icon name="wallet-outline"></ion-icon>{{customer.order.get_cart_total}}</p>
     <form action="{% url 'add-du'%}" method="POST">
       {% csrf_token %}
       <input type="integer" hidden value={{customer.id}} name='customer-id'>
-      <input type="submit" value="Add">
+      <input type="submit" value="Add" class='butoon button--full' >
     </form>
   </div>
 
 {% endfor %} 
-
+</div>
 {% comment %} <div class="" data-user-cards-container>
   <template data-user-template>
     <div class="card hidden">

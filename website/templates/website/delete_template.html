@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+
+{% load humanize %}
+
 {% block content %}
-
-<form action="" method="POST">
+<div class="container-custom">
+<form action="" method="POST" class='delete-form'>
   {% csrf_token %}
-  <p>Are you sure you want to delete "{{object}}"</p>
-  <a href="javascript:history.go(1)">Back</a>
-  <input type="submit" value='Confirm'>
+  <h3 class='subheading'>Are you sure you want to delete <span class='heading-primary'>{{object.product.service_name|title}}, EGP {{object.product.price|title}}</span></h3>
+  <div class="delete-form-row">
+    <a href="javascript:history.go(1)" class="button button--outline">Back</a>
+    <input type="submit" value='Confirm' class="button button--full">
+  </div>
 </form>
-
+</div>
 {% endblock  %}

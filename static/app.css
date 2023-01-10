@@ -528,25 +528,7 @@
     border: none;
     transition-duration: 0.4s;
   }
-  input[type='submit']:after{
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #68b9b5;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0,8s;
-  }
   
-  input[type='submit']:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
   
   label{
     font-size: 1.8rem;
@@ -824,6 +806,7 @@ label {
   .total-container{
     max-width:100rem;
     margin: auto;
+    margin-top: 0.8rem;
     padding:2.4rem;
     background-color: #d3e7e6;
     border-radius: 1.1rem;
@@ -908,4 +891,34 @@ label {
     justify-self: end;
   }
 
+  /* ************************* */
+          /*  END CUSTOMER CART */
+  /* ************************* */
   
+  /* ************************* */
+     /*  DELETE FORM */
+  /* ************************* */
+  
+.delete-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  gap: 0.8rem;
+}
+.delete-form-row{
+  display: flex;
+  align-items: center;
+  gap:0.8rem;
+}
+
+/* ************************* */
+     /*  PAYMENT FORM */
+/* ************************* */
+  
+.payment-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.2rem;
+}
