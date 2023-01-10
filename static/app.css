@@ -498,9 +498,6 @@
     padding:3.2rem 1.2rem;
     flex-direction: column;
     gap: 1.2rem;
-  
-  
-  
   }
   
   input[type='text'],input[type='email'],input[type='number']{
@@ -555,11 +552,7 @@
     font-size: 1.8rem;
   }
   
-  /* gender choice */
-  .choice{
-  
-  }
-  
+ 
   
   div.choice > div {
     display: flex;
@@ -576,6 +569,12 @@
     height:1.8rem;
     width: 1.8rem;
   }
+
+label {
+    padding-right: 1.8rem;
+    font-weight: 600;
+  }
+
   /* terms checkbox */
   input[name='terms']{
     height:3.2rem;
@@ -608,7 +607,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  
     flex-shrink:0;
     transition: background 0.15s, border-color 0.15s;
   }
@@ -650,7 +648,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  
     flex-shrink:0;
     transition: background 0.15s, border-color 0.15s;
   }
@@ -670,9 +667,9 @@
   .terms__input-male:checked + .checkbox__box-male::after{
    transform:scale(1)
   }
+  
   /* end of terms checkbox */
   /* male checkbox */
-  
   
   .check-container-female{
     display:inline-flex;
@@ -692,7 +689,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  
     flex-shrink:0;
     transition: background 0.15s, border-color 0.15s;
   }
@@ -807,26 +803,109 @@
   /* kitesurfing page end */
   /* - - - - - - - - -  */
 
-  /* - - - - - - - - -  */
-  /* restaurant page */
-  /* - - - - - - - - -  */
-
-.text-center{
+  /* ************************* */
+          /* CUSTOMER CART */
+  /* ************************* */
+  
+.customer-name{
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
   text-align: center;
-  margin-top: 1.8rem;
+  align-self: center;
 }
 
-.hero-text{
-  display: block;
-  text-align: center;
-  padding-top: 1.8rem;
-}
-
-  .about-menu{
-    background: #b7e9e7;
+  .container-cart{
+    max-width:120rem;
+    margin:0 auto;
+    padding: 0 3.2rem;
   }
 
-  .food-photo{
-    width: 100%;
+  .total-container{
+    max-width:100rem;
+    margin: auto;
+    padding:2.4rem;
+    background-color: #d3e7e6;
+    border-radius: 1.1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-size: 1.8rem;
+    text-align: center;
   }
+
+  .total-block{
+    background-color: white;
+    border-radius: 0.6rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding:0.8rem;
+    width: 32rem;
+    height: 3.2rem;
+
+  }
+  
+  .oi-date{
+    margin-left:0.8rem;
+  }
+
+  .date{
+    place-self: end;
+  }
+
+  .row{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    column-gap: 0.8rem;
+    column-gap: 3.2rem;
+    row-gap: 3.2rem;
+    margin: 0.8rem 0;
+  }
+
+  .total{
+    margin:0 auto;
+    margin-bottom: 1.8rem;
+  }
+
+  .check-out{
+    margin:0 auto
+  }
+
+  .row:is(:last-child){
+    margin-bottom: 3.2rem;
+  }
+
+  .order-items{
+    max-width: 100rem;
+    margin: auto;
+  }
+
+  .order-item{
+    border-radius: 0.4rem;
+    font-size: 1.8rem;
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 0.8rem 0;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .oi-name{
+    font-weight: 600;
+  }
+
+  .oi-price{
+    font-weight: 600;
+  }
+
+  .bold{
+    font-weight: 600;
+  }
+
+  .oi-remove{
+    background-color: #fc4747;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    color: #d3e7e6;
+    justify-self: end;
+  }
+
   
