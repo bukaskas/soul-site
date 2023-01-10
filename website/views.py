@@ -154,11 +154,14 @@ def sign_up_view(request):
   }
   return render(request,'website/customers/sign_up.html',context)
 
-class CustomerListView(ListView):
-    template_name = "website/customers/customers-index.html"
-    model = Customer
-    paginate_by = 10
-    context_object_name= "bookings"
+def customer_index(request):
+  customers, search_query = searchCustomers(request)
+
+  context = {
+    'customers':customers,
+    'search_query':search_query,
+  }
+  return render(request,'website/customers/customers-index.html',context)
 
 # service pages
 def day_use(request):
@@ -194,17 +197,24 @@ def add_du(request):
 
 def add_product(request):
   # create filter to choose service
-
   products = Service.objects.all()
-  product_types = set([service.type for service in products])
-  print("Service types",product_types)
+  product_categories = set([service.category for service in products])
+  print("Service types",product_categories)
   # create form for add service
   # need to do drop down to choose service
   context= {
-    'services':products
+    'services':products,
+    'categories':product_categories,
   }
   return render(request, 'website/school/add-service.html',context)
 
+
+# def customer_index(request):
+#   customers = Customer.objects.all()
+#   context ={
+#     'customer': customers,
+#   }
+#   return render(request,'website')
 
 def today_dayuse(request):
   day_use, today = beach_use()
