@@ -12,9 +12,15 @@ def searchCustomers(request):
   
   customers = Customer.objects.filter(
     Q(name__icontains=search_query) | Q(phone_nr__icontains=search_query))
-
-
   return customers, search_query
+
+def filterService(request):
+  search_service_query=''
+  if request.GET.get('search_service_query'):
+    search_service_query=request.GET.get('search_service_query')
+    print('SEARCH: ',search_service_query)
+  services = Service.objects.filter(Q(service_name__icontains=search_service_query))
+  return services, search_service_query
 
 def beach_use():
   today = date.today()

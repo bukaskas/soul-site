@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<section class='customer-cart'>
+  <div class="container-cart">
+  
+    {% comment %} header {% endcomment %}
+  
+    <h1 class='heading-primary customer-name'><ion-icon name="person-circle-outline"></ion-icon> {{customer.name|title}}</h1>
+  
+   {% comment %} total container {% endcomment %}
+  
+    <div class="total-container">
+      <div class="total-header heading-secondary">Total in cart</div>
+      <div class="row">
+        <div class="date total-block bold">
+            23rd,Jan, 2023
+        </div>
+        <div class="total-items total-block bold">
+          Outstanding:
+          {% if not customer.order.complete  %}
+         Total(items:{{order.get_items_total}}):  <a href="{% url 'customer-cart' order.id %}"> EGP {{order.get_cart_total|intcomma}}</a>
+          {% else %}
+            No current tab
+          {% endif %}
+        </div>
+      </div>
+    
+    </div>
+  {% comment %} end of total container {% endcomment %}
+  
+  {% comment %} OrderItem {% endcomment %}
+    <div class="order-items">
+      {% for item in services %}
+      <div class="order-item">
+        <div class="oi-date">
+          {{item.id}}
+        </div>
+        <div class="oi-name">
+          <ion-icon name="pricetag-outline"></ion-icon> {{item.service_name}}
+        </div>
+        <div class="oi-price">
+          <ion-icon name="cash-outline"></ion-icon> {{item.price}}
+        </div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="integer" hidden value={{item.id}} name='service-id'>
+          <input type="submit" value="Add">
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+  {% comment %} END OrderItem {% endcomment %}
+  
+  </div>
+  </section>
+  
+
+{% endblock  %}

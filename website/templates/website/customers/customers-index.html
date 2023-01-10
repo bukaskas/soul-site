@@ -28,7 +28,7 @@
     <h2 class='name' data-name>{{customer.name}}</h2>
     <p class='phone_nr' data-phone>{{customer.phone_nr}}</p>
     {% comment %} <p class='email' data-email>{{customer.email}}</p> {% endcomment %}
-    <a href="{% url 'customer' customer.id %}"> View </a>
+    <a href="{% url 'customer-view' customer.id %}"> View </a>
   </div>
 
 {% endfor %} 

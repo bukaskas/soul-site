@@ -163,6 +163,35 @@ def customer_index(request):
   }
   return render(request,'website/customers/customers-index.html',context)
 
+def customer_view(request,pk):
+  customer = Customer.objects.get(id=pk)
+  services = Service.objects.all()
+  try:
+    order = Order.objects.get(customer=customer,complete=False)
+  except:
+    order = True
+  if request.method == "POST":
+    try:
+        order = Order.objects.get(customer=customer,complete=False)
+    except:
+        order = Order(customer=customer)
+        order.save()
+    product = Service.objects.get(id=request.POST['service-id'])
+    order_item = OrderItem(product=product,order=order,quantity=1)
+    customer.credit += product.credit
+    customer.save(update_fields=['credit'])
+    order_item.save()
+    messages.add_message(request, messages.SUCCESS ,f'Product {product.service_name} was added to the cart.')
+    return redirect('customer-view',pk=customer.id)
+  
+  
+  context = {
+    'customer':customer,
+    'services':services,
+    'order':order,
+  }
+  return render(request,'website/customers/customer-view.html',context)
+
 # service pages
 def day_use(request):
   customers, search_query = searchCustomers(request)

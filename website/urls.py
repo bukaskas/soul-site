@@ -16,6 +16,7 @@ urlpatterns = [
     # Customers pages
     path("signup",views.sign_up_view,name='signup'),
     path("customers",views.customer_index,name='customer-list'),
+    path("customer/<str:pk>",views.customer_view,name='customer-view'),
     # services
     path('dayuse/',views.day_use, name="dayuse"),
     path("add-du/",views.add_du, name="add-du"),
