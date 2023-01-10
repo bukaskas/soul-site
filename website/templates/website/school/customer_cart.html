@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<section class='customer-cart'>
+<div class="container-cart">
+
+  {% comment %} header {% endcomment %}
+
+  <h1 class='heading-primary customer-name'><ion-icon name="person-circle-outline"></ion-icon> {{customer.name|title}}</h1>
+
+ {% comment %} total container {% endcomment %}
+
+  <div class="total-container">
+    <div class="total-header heading-secondary">Total in cart</div>
+    <div class="row">
+      <div class="date total-block bold">
+          23rd,Jan, 2023
+      </div>
+      <div class="total-items total-block bold">
+        Total(items:{{order.get_order_items}}): EGP {{order.get_cart_total|intcomma}}{% if order.complete %} Paid {% endif%}
+      </div>
+    </div>
+    <a href="{% url 'payment' order.customer.id %}" class="check-out button">
+       Check Out
+    </a>
+  </div>
+{% comment %} end of total container {% endcomment %}
+
+{% comment %} OrderItem {% endcomment %}
+  <div class="order-items">
+    {% for item in order_items %}
+    <div class="order-item">
+      <div class="oi-date">
+        {{item.created}}
+      </div>
+      <div class="oi-name">
+        <ion-icon name="pricetag-outline"></ion-icon> {{item.product.service_name}}
+      </div>
+      <div class="oi-price">
+        <ion-icon name="cash-outline"></ion-icon> {{item.product.price}}
+      </div>
+      <div class="oi-remove">
+        <ion-icon name="trash-outline"></ion-icon>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% comment %} END OrderItem {% endcomment %}
+
+</div>
+</section>
+
+{% endblock  %}

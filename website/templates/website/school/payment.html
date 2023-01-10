@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container">
+
+<h1 class='primary-heading'>Checkout page {{customer.name}}</h1>
+
+
+
+<div class="secondary-heading">
+  Total to pay: {{order.get_cart_total}}
+</div>
+
+<div class="checkout-dashboard">
+  <form method='POST' action="" class="container-custom form-container">
+
+    {% csrf_token %}
+
+    {{form.visa.label_tag}}
+    {{form.visa}}
+
+    {{form.cash.label_tag}}
+    {{form.cash}}
+
+    {{form.other.label_tag}}
+    {{form.other}}
+
+
+    {{form.comment}}
+
+    <input type="submit" value="Pay">
+  </form>
+</div>
+
+</section>
+
+{% endblock  %}

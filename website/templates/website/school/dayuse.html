@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+<script defer src={% static 'javascript/search.js' %}>
+</script>
+{% endblock  %}
+
+{% block content %}
+<section class="container-custom">
+  
+
+<div class="hero-">
+
+<form class="form form-container" action="#" method="get">
+<div class="form__field">
+  <label for="formInput#search">Search customer: </label>
+<input class="input input--text" id="formInput#search" type="text" value="{{search_query}}" placeholder="Search by name" name="search_query" data-search>  
+</div>
+
+</form>
+
+</div>
+
+
+  <h1 class="heading-primary">Soul kitesurfers</h1>
+   
+  <h2 class='heading-secondary'> Number of Beach Use {{today}}: </h2>
+  <h2 class='heading-secondary'> <a href="{% url 'today-du'%}">{{total_bu}}</a>  </h2>
+
+{% for customer in customers %}
+
+  <div class="card">
+    <h2 class='name' data-name>{{customer.name}}</h2>
+    <p class='phone_nr' data-phone>{{customer.phone_nr}}</p>
+    {% comment %} <p class='email' data-email>{{customer.email}}</p> {% endcomment %}
+    <form action="{% url 'add-du'%}" method="POST">
+      {% csrf_token %}
+      <input type="integer" hidden value={{customer.id}} name='customer-id'>
+      <input type="submit" value="Add">
+    </form>
+  </div>
+
+{% endfor %} 
+
+{% comment %} <div class="" data-user-cards-container>
+  <template data-user-template>
+    <div class="card hidden">
+      <h2 class='name' data-name></h2>
+      <p class='phone_nr' data-phone></p>
+      <p class='email' data-email></p>
+      <p class='day use' data-service=''></p>
+    </div>
+  </template>
+</div>  {% endcomment %}
+
+{% comment %} Pagination end {% endcomment %}
+
+
+</section>
+{% endblock  %}

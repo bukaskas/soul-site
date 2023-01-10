@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section class='customer-cart'>
+  <div class="container-cart">
+  
+    {% comment %} header {% endcomment %}
+  
+    <h1 class='heading-primary customer-name'><ion-icon name="person-circle-outline"></ion-icon> {{customer.name|title}}</h1>
+  
+   {% comment %} total container {% endcomment %}
+  
+    <div class="total-container">
+      <div class="total-header heading-secondary">Total payments</div>
+      <div class="row">
+        <div class="date total-block bold">
+            23rd,Jan, 2023
+        </div>
+        <div class="total-items total-block bold">
+          Total(items:{{order.get_order_items}}): EGP {{sum_total}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="date total-block bold">
+          Total Cash: {{total_cash}} EGP
+        </div>
+        <div class="total-items total-block bold">
+          Total Visa: {{total_visa}} EGP 
+        </div>
+      </div>
+
+      <a href="" class="check-out button">
+         Check Out
+      </a>
+    </div>
+  {% comment %} end of total container {% endcomment %}
+  <form method='GET' action="" class="">
+
+    {% comment %} {% csrf_token %} {% endcomment %}
+
+    {{my_filter.form}}
+
+    <input type="submit" value="Search">
+  </form>
+  {% comment %} OrderItem {% endcomment %}
+    <div class="order-items">
+      {% for item in payments %}
+      <div class="order-item">
+
+        <div class="oi-date">
+          {{item.created}}
+        </div>
+
+        <div class="oi-name">
+          <ion-icon name="pricetag-outline"></ion-icon> {{item.customer.name}}
+        </div>
+
+        <div class="oi-price">
+          <ion-icon name="cash-outline"></ion-icon> {{item.cash}}
+        </div>
+
+        <div class="oi-price">
+          <ion-icon name="card-outline"></ion-icon> {{item.visa}}
+        </div>
+
+        {% comment %} 
+        <div class="oi-remove">
+          <ion-icon name="trash-outline"></ion-icon>
+        </div> 
+        {% endcomment %}
+      </div>
+      {% endfor %}
+    </div>
+  {% comment %} END OrderItem {% endcomment %}
+  
+  </div>
+  </section>
+  
+
+
+{% endblock  %}

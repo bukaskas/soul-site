@@ -52,3 +52,11 @@ class CustomerForm(forms.Form):
     weight=forms.IntegerField(label="Weight")
     terms=forms.BooleanField(label='Check if you agree on terms in waiver form?', required=True)
     gender.widget.attrs.update({'class':'choice'})
+
+class PaymentForm(forms.Form):
+    visa=forms.IntegerField(label="Visa",required=False)
+    cash=forms.IntegerField(label='Cash',required=False)
+    other=forms.IntegerField(label='Other type',required=False)
+    comment=forms.CharField(widget=forms.Textarea(attrs={'name':'comment','style':'height = 3.2rem','label':'Comment'}),required=False)
+
+
