@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking
+from .models import Booking,Service
 from datetime import datetime
 from django.forms import ModelForm
 
@@ -59,4 +59,6 @@ class PaymentForm(forms.Form):
     other=forms.IntegerField(label='Other type',required=False)
     comment=forms.CharField(widget=forms.Textarea(attrs={'name':'comment','style':'height = 3.2rem','label':'Comment'}),required=False)
 
+class AddServiceForm(forms.Form):
+    pass
 

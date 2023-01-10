@@ -13,7 +13,7 @@ from django.db.models import Sum
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.views.decorators.csrf import csrf_exempt
-from .utils import searchCustomers, beach_use
+from .utils import searchCustomers, beach_use, sum_payments
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .filters import PaymentFilter
@@ -187,14 +187,28 @@ def add_du(request):
     if customer.credit > 0 and order_item.product.price == 200:
       order_item.product.price = 0
       print('DAY USE: ',order_item.product.price)
-    customer.credit -= order_item.product.credit
+    customer.credit += order_item.product.credit
     customer.save(update_fields=['credit'])
     order_item.save()
   return redirect('dayuse')
 
+def add_product(request):
+  # create filter to choose service
+
+  products = Service.objects.all()
+  product_types = set([service.type for service in products])
+  print("Service types",product_types)
+  # create form for add service
+  # need to do drop down to choose service
+  context= {
+    'services':products
+  }
+  return render(request, 'website/school/add-service.html',context)
+
+
 def today_dayuse(request):
   day_use, today = beach_use()
-  # print('Order_item: ',day_use[1].id)
+
   context = {
     'today':today,
     'today_du':day_use,
@@ -203,7 +217,6 @@ def today_dayuse(request):
 
 def delete_dayuse(request, pk):
   order_item = OrderItem.objects.get(id=pk)
-
   if request.method == 'POST':
     order_item.delete()
     order_item.order.customer.credit += order_item.product.credit
@@ -215,10 +228,9 @@ def delete_dayuse(request, pk):
   return render(request,'website/delete_template.html',context)
 
 def customer_cart(request, pk):
- 
   order = Order.objects.get(id=pk)
   customer = order.customer
-  messages.success(request,"Order is complete")
+
   order_items = order.orderitem_set.all()
   context ={
     'customer':customer,
@@ -243,8 +255,10 @@ def payment(request, pk):
       visa=form.cleaned_data['visa']
       cash=form.cleaned_data['cash']
       other=form.cleaned_data['other']
-      total = int(0 if visa is None else visa) + int(0 if cash is None else cash)+ int(0 if other is None else other)
-      print(total)
+      total = sum_payments(visa,cash,other)
+      print('Payment amount: ',total)
+      print('Total cart amount: ',order.get_cart_total)
+      print(total == order.get_cart_total)
       if total == order.get_cart_total:
           payment = Payment(customer = customer,
                       visa=form.cleaned_data['visa'],
@@ -255,15 +269,16 @@ def payment(request, pk):
           payment.save()
           order.complete = True
           order.save(update_fields=['complete'])
-          messages.success(request, f'Payment for {customer.name} was done.')
+          messages.add_message(request, messages.SUCCESS ,f'Payment for {customer.name} was done.')
           return redirect('dayuse')
-    else:
-      form = PaymentForm()
+      else:
+        print('Amount was incorrect')
+        messages.add_message(request, messages.INFO, f"Customer amount {total} do not match with cart total.")
+        form = PaymentForm()
   return render(request, 'website/school/payment.html',context)
 
 def payment_index(request):
   payments = Payment.objects.all()
-  
   my_filter = PaymentFilter(request.GET, queryset=payments)
   payments = my_filter.qs
   cash_payments= payments.filter(cash__isnull=False)

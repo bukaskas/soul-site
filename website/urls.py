@@ -19,6 +19,7 @@ urlpatterns = [
     # services
     path('dayuse/',views.day_use, name="dayuse"),
     path("add-du/",views.add_du, name="add-du"),
+    path("add-product/",views.add_product, name="add-product"),
     path("delete-du/<str:pk>",views.delete_dayuse, name="delete-du"),
     path("dayuse-today/",views.today_dayuse, name="today-du"),
     path("customer-cart/<str:pk>",views.customer_cart, name="customer-cart"),

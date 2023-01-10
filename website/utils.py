@@ -20,3 +20,10 @@ def beach_use():
   today = date.today()
   bu_total = OrderItem.objects.filter(Q(product__service_name__icontains='day')&Q(created=today))
   return bu_total, today
+
+
+def sum_payments(*args):
+  sum = 0
+  for n in args:
+    sum += int(0 if n is None else n)
+  return sum
