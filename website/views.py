@@ -17,11 +17,13 @@ from .utils import searchCustomers, beach_use, sum_payments
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .filters import PaymentFilter
-from django.http import HttpResponseRedirect
 
 
 
 
+
+def login_page(request):
+    return render(request,'website/customers/login_register.html')
 # Create your views here.
 class IndexView(TemplateView):
   template_name="website/index.html"
@@ -36,6 +38,7 @@ class IndexView(TemplateView):
 def kitesurfing_view(request):
   services = Service.objects.all()
   context = {'services':services}
+
   return render(request,"website/kitesurfing.html",context)
 
 class RestaurantView(View):
