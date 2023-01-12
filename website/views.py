@@ -224,7 +224,7 @@ def customer_view(request,pk):
   try:
     order = Order.objects.get(customer=customer,complete=False)
   except:
-    order = True
+    order = True 
   if request.method == "POST":
     try:
         order = Order.objects.get(customer=customer,complete=False)
@@ -232,7 +232,10 @@ def customer_view(request,pk):
         order = Order(customer=customer)
         order.save()
     product = Service.objects.get(id=request.POST['service-id'])
-    order_item = OrderItem(product=product,order=order,quantity=1)
+    order_item = OrderItem(product=product,order=order,quantity=1,price=product.price)
+    if customer.credit > 0 and order_item.price == 200:
+      order_item.price = 0
+      print('DAY USE: ',order_item.price)
     customer.credit += product.credit
     customer.save(update_fields=['credit'])
     order_item.save()
@@ -271,12 +274,14 @@ def add_du(request):
         order = Order(customer=customer)
         order.save()
     product = Service.objects.get(service_name__icontains='day')
-    order_item = OrderItem(product=product,order=order,quantity=1)
-    if customer.credit > 0 and order_item.product.price == 200:
-      order_item.product.price = 0
-      print('DAY USE: ',order_item.product.price)
+    order_item = OrderItem(product=product,order=order,quantity=1,price=product.price)
+    if customer.credit > 0 and order_item.price == 200:
+      order_item.price = 0
+      print('DAY USE: ',order_item.price)
+
     customer.credit += order_item.product.credit
     customer.save(update_fields=['credit'])
+    print('Customer credit after: ',customer.credit)
     order_item.save()
   return redirect('dayuse')
 
@@ -355,9 +360,8 @@ def payment(request, pk):
       cash=form.cleaned_data['cash']
       other=form.cleaned_data['other']
       total = sum_payments(visa,cash,other)
-      print('Payment amount: ',total)
-      print('Total cart amount: ',order.get_cart_total)
-      print(total == order.get_cart_total)
+
+      """Check if the payment amount is equal to carts total"""
       if total == order.get_cart_total:
           payment = Payment(customer = customer,
                       visa=form.cleaned_data['visa'],
@@ -367,6 +371,14 @@ def payment(request, pk):
                       order= order)
           payment.save()
           order.complete = True
+          """ Return the credits for paid day use """
+          order_items = order.orderitem_set.filter(price__gt=0)
+          # return count total sum of credit, where credit is equal to 1 
+          return_credits = -sum([ item.product.credit for item in order_items if item.product.credit == -1 ])
+          # return the credit to the customer
+          customer.credit += return_credits
+          customer.save(update_fields=['credit'])
+          
           order.save(update_fields=['complete'])
           messages.add_message(request, messages.SUCCESS ,f'Payment for {customer.name} was done.')
           return redirect('dayuse')

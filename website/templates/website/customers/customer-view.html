@@ -30,11 +30,20 @@
         </div>
         <div class="total-items total-block bold">
           Outstanding:
-          {% if not customer.order.complete  %}
+          {% if order.complete == False %}
+
          Total(items:{{order.get_items_total}}):  <a href="{% url 'customer-cart' order.id %}"> EGP {{order.get_cart_total|intcomma}}</a>
           {% else %}
             No current tab
           {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="date total-block bold">
+            {{customer.credit}}
+        </div>
+        <div class="total-items total-block bold">
+         No Info yet
         </div>
       </div>
     

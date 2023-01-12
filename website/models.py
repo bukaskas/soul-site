@@ -92,10 +92,11 @@ class OrderItem(models.Model):
   quantity = models.IntegerField(default=0, null=True,blank=True)
   created = models.DateField(null=True,editable=False)
   modified = models.DateField(null=True,editable=False)
+  price = models.IntegerField(null=True,blank=True,editable=False)
   
   @property
   def get_total(self):
-    total = self.product.price*self.quantity
+    total = self.price*self.quantity
     return total
 
   def save(self, *args, **kwargs):
