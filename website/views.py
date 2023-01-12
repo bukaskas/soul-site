@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.urls import reverse
-from .forms import BookingForm, CustomerForm, PaymentForm
+from .forms import BookingForm, CustomerForm, PaymentForm, CustomUserCreationForm
 from django.views.generic.edit import CreateView
 from django.http import FileResponse
 from .models import Service,Customer,Booking, Order, OrderItem, Payment
@@ -17,14 +17,88 @@ from .utils import searchCustomers, beach_use, sum_payments
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .filters import PaymentFilter
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 
 
+def login_user(request):
+    page = 'login'
+    if request.user.is_authenticated:
+      return redirect('home')
 
-
-def login_page(request):
-    return render(request,'website/customers/login_register.html')
+    if request.method =="POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        try:
+          user = User.objects.get(username=username)
+        except:
+          messages.add_message(request,messages.ERROR,'User does not exist')
+          print('Username does not exist')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+          login(request,user)
+          return redirect('home')
+        else:
+          messages.add_message(request,messages.ERROR,'Username or password is incorrect')
+    context={
+      'page':page
+    }
+    return render(request,'website/customers/login_register.html',context)
 # Create your views here.
+
+def logout_user(request):
+    logout(request)
+    messages.add_message(request,messages.SUCCESS,'User was succesfully logged out')
+    return redirect('login')
+
+def sign_up_view(request):
+  form = CustomerForm()
+  if request.method == 'POST':
+    form = CustomerForm(request.POST)
+    if form.is_valid():
+      customer = Customer(name=form.cleaned_data['name'],
+                          phone_nr=form.cleaned_data['phone_nr'],
+                          email=form.cleaned_data['email'],
+                          terms=form.cleaned_data['terms'],
+                          gender=form.cleaned_data['gender'],
+                          weight=form.cleaned_data['weight'],)
+      customer.save()
+      return redirect('home')
+    else:
+      form = CustomerForm()
+
+  context = {
+    'form':form
+  }
+  return render(request,'website/customers/sign_up.html',context)
+
+def register_view(request):
+  page = 'register'
+  form = CustomUserCreationForm()
+  if request.method == 'POST':
+    print(request.POST)
+    form = CustomUserCreationForm(request.POST)
+    
+    if form.is_valid():
+      print("form is valid")
+      user = form.save(commit=False)
+      user.username = user.username.lower()
+      user.save()
+
+      messages.add_message(request,messages.SUCCESS,'User account was created')
+      login(request, user)
+      return redirect('home')
+    else:
+      messages.add_message(request, messages.ERROR,"Something went wrong")
+ 
+  context={
+    'page':page,
+    'form':form,
+  }
+  return render(request,'website/customers/login_register.html',context)
 class IndexView(TemplateView):
   template_name="website/index.html"
  
@@ -71,6 +145,7 @@ class ThankYouView(View):
   def get(self,request):
     return render(request,"soul_customers/thank-you.html")
 
+
 class BookingsView(ListView):
     template_name = "soul_customers/bookings.html"
     model = Booking
@@ -91,11 +166,7 @@ class BookingsView(ListView):
                  unique.append(number)
           return unique
         unique_dates = sorted(get_unique_numbers(all_dates))
-
         sorted_dates = sorted(unique_dates)
-
-    
-       
         booking_list =[]
         for i in sorted_dates:
           on_date = bookings.filter(date=i.strftime("%Y-%m-%d")).aggregate(Sum('nop'))
@@ -103,10 +174,8 @@ class BookingsView(ListView):
             "date":i,
             "num":on_date['nop__sum'],
           }
-          booking_list.append(dict)
-         
+          booking_list.append(dict)     
         context["booked"]=booking_list
-
         return context
 
 
@@ -137,26 +206,7 @@ class BookingsByDateView(ListView):
       return context 
 
 
-def sign_up_view(request):
-  form = CustomerForm()
-  if request.method == 'POST':
-    form = CustomerForm(request.POST)
-    if form.is_valid():
-      customer = Customer(name=form.cleaned_data['name'],
-                          phone_nr=form.cleaned_data['phone_nr'],
-                          email=form.cleaned_data['email'],
-                          terms=form.cleaned_data['terms'],
-                          gender=form.cleaned_data['gender'],
-                          weight=form.cleaned_data['weight'],)
-      customer.save()
-      return redirect('home')
-    else:
-      form = CustomerForm()
 
-  context = {
-    'form':form
-  }
-  return render(request,'website/customers/sign_up.html',context)
 
 def customer_index(request):
   customers, search_query = searchCustomers(request)
@@ -167,6 +217,7 @@ def customer_index(request):
   }
   return render(request,'website/customers/customers-index.html',context)
 
+@login_required(login_url='home')
 def customer_view(request,pk):
   customer = Customer.objects.get(id=pk)
   services = Service.objects.all()
@@ -188,7 +239,6 @@ def customer_view(request,pk):
     messages.add_message(request, messages.SUCCESS ,f'Product {product.service_name} was added to the cart.')
     return redirect('customer-view',pk=customer.id)
   
-  
   context = {
     'customer':customer,
     'services':services,
@@ -196,7 +246,8 @@ def customer_view(request,pk):
   }
   return render(request,'website/customers/customer-view.html',context)
 
-# service pages
+# School pages
+@login_required(login_url='home')
 def day_use(request):
   customers, search_query = searchCustomers(request)
   bu_use, today = beach_use()
@@ -209,6 +260,7 @@ def day_use(request):
   }
   return render(request, 'website/school/dayuse.html',context)
 
+@login_required(login_url='home')
 def add_du(request):
   if request.method == "POST":
     customer_id = request.POST['customer-id']
@@ -227,6 +279,7 @@ def add_du(request):
     customer.save(update_fields=['credit'])
     order_item.save()
   return redirect('dayuse')
+
 
 def add_product(request):
   # create filter to choose service
@@ -249,6 +302,7 @@ def add_product(request):
 #   }
 #   return render(request,'website')
 
+@login_required(login_url='home')
 def today_dayuse(request):
   day_use, today = beach_use()
 
@@ -270,6 +324,7 @@ def delete_dayuse(request, pk):
   }
   return render(request,'website/delete_template.html',context)
 
+@login_required(login_url='home')
 def customer_cart(request, pk):
   order = Order.objects.get(id=pk)
   customer = order.customer
@@ -282,6 +337,7 @@ def customer_cart(request, pk):
   }
   return render(request, 'website/school/customer_cart.html',context)
 
+@login_required(login_url='home')
 def payment(request, pk):
   form = PaymentForm()
   customer = Customer.objects.get(id=pk)
@@ -320,6 +376,7 @@ def payment(request, pk):
         form = PaymentForm()
   return render(request, 'website/school/payment.html',context)
 
+@login_required(login_url='home')
 def payment_index(request):
   payments = Payment.objects.all()
   my_filter = PaymentFilter(request.GET, queryset=payments)

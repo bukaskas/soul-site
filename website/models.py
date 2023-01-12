@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -16,6 +18,7 @@ class Service(models.Model):
       return f" {self.service_name}, {self.price}"
 
 class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100,null=True)
     phone_nr = models.CharField(max_length=30,null=True)
     email = models.EmailField(blank=True,null=True)
@@ -25,7 +28,7 @@ class Customer(models.Model):
     created = models.DateTimeField(editable=False, null=True)
     modified = models.DateTimeField(null=True,blank=True)
     credit = models.IntegerField(null=True,default=0)
-
+    cash_credit = models.IntegerField(null=True, default=0)
     # many bookings
     def __str__(self):
       return f"{self.name},{self.phone_nr}"

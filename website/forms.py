@@ -2,6 +2,8 @@ from django import forms
 from .models import Booking,Service
 from datetime import datetime
 from django.forms import ModelForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 GENDER_CHOICES = [
@@ -59,6 +61,11 @@ class PaymentForm(forms.Form):
     other=forms.IntegerField(label='Other type',required=False)
     comment=forms.CharField(widget=forms.Textarea(attrs={'name':'comment','style':'height = 3.2rem','label':'Comment'}),required=False)
 
-class AddServiceForm(forms.Form):
-    pass
-
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['first_name','email','username','password1','password2']
+        labels = {
+            'first_name':'Name'
+        }
+        

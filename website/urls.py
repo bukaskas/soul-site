@@ -15,7 +15,9 @@ urlpatterns = [
     path("book", views.CreateBooking.as_view(), name="book"),
     # Customers pages
     path("signup",views.sign_up_view,name='signup'),
-    path("login",views.login_page,name='login'),
+    path("register",views.register_view,name='register'),
+    path("login",views.login_user,name='login'),
+    path("logout",views.logout_user,name='logout'),
     path("customers",views.customer_index,name='customer-list'),
     path("customer/<str:pk>",views.customer_view,name='customer-view'),
     # services

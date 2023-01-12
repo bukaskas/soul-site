@@ -37,15 +37,21 @@
     </a>
     <nav class="main-nav">
         <ul class="main-nav-list">
-          <li><a class="main-nav-link" href="{% url "payments"%}">Payments</a></li>
-          <li><a class="main-nav-link" href="{% url "add-product"%}">Shop</a></li>
-          <li><a class="main-nav-link" href="{% url "dayuse"%}">Beach Use</a></li>
-          <li><a class="main-nav-link" href="{% url "customer-list"%}">Customers</a></li>
+          
           <li><a class="main-nav-link" href="{% url "kitesurfing"%}">Kitesurfing</a></li>
           <li><a class="main-nav-link" href="{% url "restaurant" %}">Restaurant</a></li>
           {% comment %} <li><a class="main-nav-link" href="{% url "accommodation" %}">Accommodation</a></li> {% endcomment %}
           <li><a class="main-nav-link nav-cta" href="{% url "home" %}">Home</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a class="main-nav-link" href="{% url "payments"%}">Payments</a></li>
+          <li><a class="main-nav-link" href="{% url "add-product"%}">Shop</a></li>
+          <li><a class="main-nav-link" href="{% url "dayuse"%}">Beach Use</a></li>
+          <li><a class="main-nav-link" href="{% url "customer-list"%}">Customers</a></li>
+
+          <li><a class="main-nav-link nav-cta" href="{% url "logout" %}"><ion-icon name="person-circle-outline"></ion-icon>Log out</a></li>
+          {% else %}
           <li><a class="main-nav-link nav-cta" href="{% url "login" %}"><ion-icon name="person-circle-outline"></ion-icon>Login</a></li>
+          {% endif %}
         </ul>
     </nav>
     <button  class="btn--mobile-nav change-menu">
@@ -54,12 +60,13 @@
     </button>
   </header>
   
-  {% comment %} <div class="container">
-    <li><a href="#">home</a></li>
-    <li><a href="#">about</a></li>
-    <li><a href="#">kitesurfing</a></li>
-    <li><a href="#">wellness</a></li>
-  </div> {% endcomment %}
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
   {% block content %}
 
   {% endblock  %}
