@@ -1,27 +1,35 @@
 
 
-const searchInput = document.querySelector("[data-search]")
+// const searchInput = document.querySelector("[data-search]")
 
-let users = []
+// let users = []
 
-searchInput.addEventListener("input",(e) => {
-  const value = e.target.value.toLowerCase()
-  users.forEach(user =>{
-    console.log(user)
-    const isVisible = user.name.toLowerCase().includes(value) || user.phone.toString().includes(value)
-    user.element.classList.toggle('hide',!isVisible)
-  })
+// searchInput.addEventListener("input",(e) => {
+//   const value = e.target.value.toLowerCase()
+//   users.forEach(user =>{
+//     console.log(user)
+//     const isVisible = user.name.toLowerCase().includes(value) || user.phone.toString().includes(value)
+//     user.element.classList.toggle('hide',!isVisible)
+//   })
+// })
+
+
+
+
+
+// const userCardTemplate = document.querySelector('[data-user-template]')
+// const listElement = document.querySelector('.customers')
+// const customerTemplate = document.getElementById('customer')
+// const userCardContainer = document.querySelector('[data-user-cards-container]')
+
+const waiverButton = document.getElementById('show-waiver')
+
+console.log(waiverButton)
+
+waiverButton.addEventListener('click',(e) =>{
+  let waiverContent = document.getElementsByClassName('waiver-content')
+  console.log(waiverContent,e)
 })
-
-
-
-
-
-const userCardTemplate = document.querySelector('[data-user-template]')
-const listElement = document.querySelector('.customers')
-const customerTemplate = document.getElementById('customer')
-const userCardContainer = document.querySelector('[data-user-cards-container]')
-
 
 const xhr = new XMLHttpRequest();
 

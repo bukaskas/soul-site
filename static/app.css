@@ -439,8 +439,18 @@
    /* waiver form */
   /* - - - - - - - */
    
+  #show-waiver{
+    background-color: green;
+  }
+
   .waiver-content{
+    position:absolute;
     font-size: 1.8rem;
+    transition: all 1s;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in;
   }
   
   .waiver-ul > li{
@@ -450,6 +460,13 @@
   
   .waiver-ul > li::marker {
     font-size: 3rem;
+  }
+
+  .waiver-open{
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    position:relative
   }
   
   /* .waiver-ul > li::before{

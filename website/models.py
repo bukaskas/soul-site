@@ -21,7 +21,7 @@ class Service(models.Model):
 
   
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True,blank=True)
     name = models.CharField(max_length=100,null=True)
     phone_nr = models.CharField(max_length=30,null=True)
     email = models.EmailField(blank=True,null=True)
@@ -160,7 +160,8 @@ class Staff(models.Model):
   name = models.CharField(max_length=80)
   phone = models.CharField(max_length=30)
   email = models.CharField(max_length=100)
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
+  commission = models.IntegerField(null=True,default=0)
    
   def __str__(self):
     return f"{self.name}, phone: {self.phone}"
@@ -168,10 +169,10 @@ class Staff(models.Model):
   def is_instructor(self):
     return self.type in {self.INSTRUCTOR, self.ASSISTANT}
 class Session(models.Model):
-  service = models.OneToOneField(Service, on_delete=models.SET_NULL,null=True)
-  student = models.ManyToManyField(Customer)
+  service = models.ForeignKey(Service, on_delete=models.SET_NULL,null=True)
+  student = models.ManyToManyField(Customer,related_name='students')
   staff = models.ForeignKey(Staff, on_delete=models.SET_NULL,null=True)
-  time = models.IntegerField(default=0)
+  time = models.IntegerField(default=0) 
 
   def __str__(self):
     return f"Students: {self.student}, Instructor: {self.staff}"

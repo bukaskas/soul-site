@@ -20,8 +20,10 @@ class StaffAdmin(admin.ModelAdmin):
   list_display = ['type','name','phone','email','user']
 
 class SessionAdmin(admin.ModelAdmin):
-  list_display = ['service','student','staff','time']
-
+  list_display = ['service','staff','time','get_students']
+  
+  def get_students(self, obj):
+        return [student.name for student in obj.student.all()]
 
 
 admin.site.register(Service,ServiceAdmin)
@@ -30,5 +32,6 @@ admin.site.register(Order,OrderAdmin)
 admin.site.register(OrderItem,OrderItemAdmin)
 admin.site.register(Payment,PaymentAdmin)
 admin.site.register(Staff, StaffAdmin)
+admin.site.register(Session, SessionAdmin)
 
 

@@ -287,24 +287,29 @@ def add_du(request):
 
 def add_session(request):
   """ Add lessons for the instructor and student """
-  query_set=''
-  query=''
-  if request.method == 'GET':
-    query_set,query = searchCustomers(request)
-    
-
-    
   form = SessionForm()
-  try:
-    form.fields['student'].queryset = query_set
-  except:
-    form.fields['student'].queryset = Customer.objects.all()
-
+  if request.method == "POST":
+    students_request = request.POST.getlist('students')
+    students=[]
+    for x in students_request:
+      student = Customer.objects.get(id=x)
+      students.append(student)
+    form = SessionForm(request.POST)
+    time = int(request.POST['hours']) + round(int(request.POST['minutes'])/60,2)
+    if form.is_valid():
+      session = Session(service=form.cleaned_data['lesson'],
+                        staff=form.cleaned_data['staff'],
+                        time=time,
+                        )
+      session.save()
+      session.student.add(*students)                  
+      
+      
+      
+    return redirect('add-session')
+    
   context={
-    'form':form,
-    'query_set':query_set,
-    'query':query,
-
+    'form':form
   }
   return render(request,'website/school/add_session.html',context)
 

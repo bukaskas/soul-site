@@ -76,6 +76,7 @@ class StaffForm(forms.Form):
     email = forms.EmailField()
 class SessionForm(forms.Form):
     HOURS = [
+        ('0',0),
         ('1',1),
         ('2',2),
         ('3',3),
@@ -84,22 +85,22 @@ class SessionForm(forms.Form):
     ]
 
     MINUTES = [
+        ('0',0),
         ('15',15),
         ('30',30),
         ('45',45),
     ]
 
-    lesson = forms.ModelChoiceField(queryset=None)
-    staff = forms.ModelChoiceField(queryset=Staff.objects.all())
-    student = forms.ModelMultipleChoiceField(queryset=None)
-    hours = forms.ChoiceField(choices=HOURS)
-    minutes = forms.ChoiceField(choices=MINUTES,required=False)
+    lesson = forms.ModelChoiceField(queryset=None,label="Type of Lesson")
+    staff = forms.ModelChoiceField(queryset=Staff.objects.all(),label='Instructor')
+    hours = forms.ChoiceField(choices=HOURS,label='Hours')
+    minutes = forms.ChoiceField(choices=MINUTES,required=False,label='minutes')
 
     """ Select only course type of service """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Need to fix the filter for staff filter
-        # self.fields['staff'].queryset = Staff.objects.filter(type__icontains='instr')
+
         self.fields['lesson'].queryset = Service.objects.filter(category__icontains='course')
        
         

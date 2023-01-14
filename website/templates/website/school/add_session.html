@@ -1,18 +1,42 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css_files %}
+
+  <script defer src={% static 'javascript/add-session.js' %}>
+  </script>
+
+{% endblock css_files %} 
+
 {% block content %}
 
-<form action="" method='GET'>
-    {% csrf_token %}
-  <input type="text" name='search_query' value={{query}}>
-  <input type="submit" value='Search'>
-</form>
 
-<form action="" method='POST'>
+
+
+<label for="customer">Type name or phone number:</label>
+<input type="text" name='customer' list='customerList' data-search id='customerInput'>
+<datalist id='customerList'>
+</datalist>
+<button id='addStudent'>Add</button>
+
+<form action="{% url 'add-session' %}" method='POST' id='form'>
   {% csrf_token %}
   {% comment %} search query set {% endcomment %}
+  <div id='session-students'> 
+  
+  </div>
+  {{form.lesson.label_tag}}
+  {{form.lesson}}
 
-  {{form.as_p}}
+  {{forms.staff.label_tag}}
+  {{form.staff}}
+
+  {{form.hours.label_tag}}
+  {{form.hours}}
+
+  {{form.minutes.label_tag}}
+  {{form.minutes}}
   <input type="submit" value='REGISTER'>
 </form>
 

@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css_files %}
+
+<script defer src={% static 'javascript/waiver.js' %}>
+</script>
+{% endblock css_files %}
+
 {% block content %}
 
 <section class='waiver-form'>
   <div class="container-custom">
-    <h2 class="heading-primary">Waiver form</h2>
+    <button id='show-waiver'><h2 class="heading-primary" >Waiver form</h2></button> 
     <div id='waiver' class="waiver-content">
       <p>In consideration for courses and/or activities utilizing the facilites, ground IKO Center, kiteboarding instruction,
       premises and equipment of SOUL Kitesurfing, I hereby acknowledge and agree to the following:</p>
@@ -68,14 +74,14 @@
 
     {{form.gender.label_tag}}
 <div class="gender">
-{{form.gender}}
+    {{form.gender}}
 </div>
-{{form.weight.label_tag}}
-{{form.weight}}
+    {{form.weight.label_tag}}
+    {{form.weight}}
 
 <div class="terms">
-  {{form.terms.label_tag}}
-  {{form.terms}}
+   {{form.terms.label_tag}}
+   {{form.terms}}
 </div>
 
 
@@ -83,11 +89,7 @@
   </form>
 </section>
 
-<script>
-  let waiverContent = document.getElementById('waiver')
-  console.log(waiverContent)
 
-</script>
 
 {% endblock content %}
 
