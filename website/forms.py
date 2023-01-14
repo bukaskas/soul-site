@@ -20,9 +20,6 @@ class DateInput(forms.DateInput):
 class TextInput(forms.TextInput):
     input_type= 'text'
 
-
-
-
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
