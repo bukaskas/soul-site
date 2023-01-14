@@ -4,10 +4,10 @@ from django.shortcuts import render,redirect
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.urls import reverse
-from .forms import BookingForm, CustomerForm, PaymentForm, CustomUserCreationForm
+from .forms import BookingForm, CustomerForm, PaymentForm, CustomUserCreationForm,SessionForm
 from django.views.generic.edit import CreateView
 from django.http import FileResponse
-from .models import Service,Customer,Booking, Order, OrderItem, Payment
+from .models import *
 from datetime import datetime
 from django.db.models import Sum
 from django.views.generic.list import ListView
@@ -46,7 +46,7 @@ def login_user(request):
     context={
       'page':page
     }
-    return render(request,'website/customers/login_register.html',context)
+    return render(request,'website//login_register.html',context)
 # Create your views here.
 
 def logout_user(request):
@@ -98,7 +98,8 @@ def register_view(request):
     'page':page,
     'form':form,
   }
-  return render(request,'website/customers/login_register.html',context)
+  return render(request,'website/login_register.html',context)
+
 class IndexView(TemplateView):
   template_name="website/index.html"
  
@@ -196,7 +197,6 @@ class BookingsByDateView(ListView):
     context_object_name= "bookings"
 
 
-
     def get_queryset(self,*args,**kwargs):
       return Booking.objects.filter(date=self.kwargs.get('date'))
 
@@ -285,7 +285,30 @@ def add_du(request):
     order_item.save()
   return redirect('dayuse')
 
+def add_session(request):
+  """ Add lessons for the instructor and student """
+  query_set=''
+  query=''
+  if request.method == 'GET':
+    query_set,query = searchCustomers(request)
+    
 
+    
+  form = SessionForm()
+  try:
+    form.fields['student'].queryset = query_set
+  except:
+    form.fields['student'].queryset = Customer.objects.all()
+
+  context={
+    'form':form,
+    'query_set':query_set,
+    'query':query,
+
+  }
+  return render(request,'website/school/add_session.html',context)
+
+@login_required
 def add_product(request):
   # create filter to choose service
   products = Service.objects.all()

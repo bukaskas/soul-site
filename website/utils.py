@@ -1,4 +1,4 @@
-from .models import Customer, OrderItem
+from .models import Customer, OrderItem,Service
 from django.db.models import Q
 from datetime import date
 

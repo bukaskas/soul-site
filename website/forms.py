@@ -1,9 +1,11 @@
 from django import forms
-from .models import Booking,Service
+from .models import Booking,Service, Staff, Customer
 from datetime import datetime
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Q
+
 
 
 GENDER_CHOICES = [
@@ -19,10 +21,7 @@ class TextInput(forms.TextInput):
     input_type= 'text'
 
 
-# class BookingForm(forms.Form):
-#     booking_date = forms.DateField(label="Booking date",widget=DateInput)
-#     customer_name = forms.CharField(label="First Name")
-#     customer_fname = forms.CharField(label="Family Name")
+
 
 class BookingForm(ModelForm):
     class Meta:
@@ -68,4 +67,39 @@ class CustomUserCreationForm(UserCreationForm):
         labels = {
             'first_name':'Name'
         }
+        
+class StaffForm(forms.Form):
+    type = forms.CharField()
+    fname = forms.CharField()
+    lname = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
+class SessionForm(forms.Form):
+    HOURS = [
+        ('1',1),
+        ('2',2),
+        ('3',3),
+        ('4',4),
+        ('5',5),
+    ]
+
+    MINUTES = [
+        ('15',15),
+        ('30',30),
+        ('45',45),
+    ]
+
+    lesson = forms.ModelChoiceField(queryset=None)
+    staff = forms.ModelChoiceField(queryset=Staff.objects.all())
+    student = forms.ModelMultipleChoiceField(queryset=None)
+    hours = forms.ChoiceField(choices=HOURS)
+    minutes = forms.ChoiceField(choices=MINUTES,required=False)
+
+    """ Select only course type of service """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Need to fix the filter for staff filter
+        # self.fields['staff'].queryset = Staff.objects.filter(type__icontains='instr')
+        self.fields['lesson'].queryset = Service.objects.filter(category__icontains='course')
+       
         

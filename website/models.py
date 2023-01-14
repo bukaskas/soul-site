@@ -17,6 +17,9 @@ class Service(models.Model):
     def __str__(self):
       return f" {self.service_name}, {self.price}"
 
+
+
+  
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100,null=True)
@@ -29,6 +32,7 @@ class Customer(models.Model):
     modified = models.DateTimeField(null=True,blank=True)
     credit = models.IntegerField(null=True,default=0)
     cash_credit = models.IntegerField(null=True, default=0)
+   
     # many bookings
     def __str__(self):
       return f"{self.name},{self.phone_nr}"
@@ -130,3 +134,45 @@ class Payment(models.Model):
   def __str__(self):
       return f'{self.customer}, Visa: {self.visa} Cash:{self.cash}'
 
+
+
+
+class Staff(models.Model):
+  UN = 'UN'
+  INSTRUCTOR='I'
+  ASSISTANT='A'
+  B_ASSISTANT='BA'
+  RECEPTION='R'
+  MANAGER='M'
+  HEAD_INSTRUCTOR='HI'
+
+  STAFF_TYPE=[
+    (UN, 'Unsigned'),
+    (INSTRUCTOR,'Instructor'),
+    (ASSISTANT,'Assistant'),
+    (B_ASSISTANT,'B-Assistant'),
+    (RECEPTION,'Reception'),
+    (MANAGER,'Manager'),
+    (HEAD_INSTRUCTOR,'Head instructor'),
+  ]
+
+  type = models.CharField(max_length=30,choices=STAFF_TYPE,default=UN, null=True,blank=True)
+  name = models.CharField(max_length=80)
+  phone = models.CharField(max_length=30)
+  email = models.CharField(max_length=100)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+   
+  def __str__(self):
+    return f"{self.name}, phone: {self.phone}"
+
+  def is_instructor(self):
+    return self.type in {self.INSTRUCTOR, self.ASSISTANT}
+class Session(models.Model):
+  service = models.OneToOneField(Service, on_delete=models.SET_NULL,null=True)
+  student = models.ManyToManyField(Customer)
+  staff = models.ForeignKey(Staff, on_delete=models.SET_NULL,null=True)
+  time = models.IntegerField(default=0)
+
+  def __str__(self):
+    return f"Students: {self.student}, Instructor: {self.staff}"
+  

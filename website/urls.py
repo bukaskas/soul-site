@@ -2,17 +2,20 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # General views
     path("",views.IndexView.as_view(), name="home"),
     path("kitesurfing",views.kitesurfing_view,name="kitesurfing"),
     path("restaurant/",views.RestaurantView.as_view(),name="restaurant"),
     path("restaurant/menu/", views.menu_view, name='menu'),
     path("accommodation",views.AccommodationView.as_view(),name="accommodation"),
     path("thank-you", views.ThankYouView.as_view()),
+    
     # Bookings
     path("bookings",views.BookingsView.as_view(),name="bookings"),
     path("bookings/<int:pk>", views.BookingDetailView.as_view(),name="booking"),
     path("bookings/<str:date>",views.BookingsByDateView.as_view(),name="bookings-by-date"),
     path("book", views.CreateBooking.as_view(), name="book"),
+   
     # Customers pages
     path("signup",views.sign_up_view,name='signup'),
     path("register",views.register_view,name='register'),
@@ -20,9 +23,11 @@ urlpatterns = [
     path("logout",views.logout_user,name='logout'),
     path("customers",views.customer_index,name='customer-list'),
     path("customer/<str:pk>",views.customer_view,name='customer-view'),
-    # services
+    
+    # services and school
     path('dayuse/',views.day_use, name="dayuse"),
     path("add-du/",views.add_du, name="add-du"),
+    path("add-session/",views.add_session, name="add-session"),
     path("add-product/",views.add_product, name="add-product"),
     path("delete-du/<str:pk>",views.delete_dayuse, name="delete-du"),
     path("dayuse-today/",views.today_dayuse, name="today-du"),

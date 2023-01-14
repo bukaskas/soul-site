@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method='GET'>
+    {% csrf_token %}
+  <input type="text" name='search_query' value={{query}}>
+  <input type="submit" value='Search'>
+</form>
+
+<form action="" method='POST'>
+  {% csrf_token %}
+  {% comment %} search query set {% endcomment %}
+
+  {{form.as_p}}
+  <input type="submit" value='REGISTER'>
+</form>
+
+{% endblock content %}

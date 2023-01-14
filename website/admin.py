@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Service, Order, OrderItem, Payment
+from .models import *
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
   list_display=("name","phone_nr")
@@ -16,9 +16,19 @@ class OrderItemAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
   list_display=['created','customer','visa','cash','other','comment']
 
+class StaffAdmin(admin.ModelAdmin):
+  list_display = ['type','name','phone','email','user']
+
+class SessionAdmin(admin.ModelAdmin):
+  list_display = ['service','student','staff','time']
+
+
+
 admin.site.register(Service,ServiceAdmin)
 admin.site.register(Customer,CustomerAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(OrderItem,OrderItemAdmin)
 admin.site.register(Payment,PaymentAdmin)
+admin.site.register(Staff, StaffAdmin)
+
 
