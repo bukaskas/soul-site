@@ -6,7 +6,7 @@
 <section class='waiver-form'>
   <div class="container-custom">
     <h2 class="heading-primary">Waiver form</h2>
-    <div class="waiver-content">
+    <div id='waiver' class="waiver-content">
       <p>In consideration for courses and/or activities utilizing the facilites, ground IKO Center, kiteboarding instruction,
       premises and equipment of SOUL Kitesurfing, I hereby acknowledge and agree to the following:</p>
       <ul class="waiver-ul">
@@ -82,6 +82,12 @@
     <input type="submit" value="Sign up">
   </form>
 </section>
+
+<script>
+  let waiverContent = document.getElementById('waiver')
+  console.log(waiverContent)
+
+</script>
 
 {% endblock content %}
 
