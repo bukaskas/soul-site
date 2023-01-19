@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+
+<link rel="stylesheet" href="{% static 'sessions.css' %}">
+
+
+<script defer src={% static 'javascript/search.js' %}>
+</script>
+{% endblock css_files %}
+
+{% block content %}
+<section class="container-custom">
+  
+
+<h1 class="heading-primary">Soul kitesurfers</h1>
+ 
+
+<form class="form form-container" action="#" method="get">
+  <div class="form__field">
+    <label for="formInput#search">Search session: </label>
+  <input class="input input--text" id="formInput#search" type="text" value="{{search_query}}" placeholder="Search by name" name="search_query" data-search>  
+  </div>
+  
+</form>
+
+{% for session in sessions %}
+
+  <div class="card">
+
+    <h2 class='name' data-name>
+    {% for stud in session.students %} 
+ <!-- A link to student's profile -->
+    <a href="{% url 'customer-view' stud.id%}" class="student-label">{{stud.name}}</a>  
+    {% endfor %}
+    </h2>
+    <p class='phone_nr' data-phone>{{session.staff.name}}</p>
+    {% comment %} <p class='email' data-email>{{customer.email}}</p> {% endcomment %}
+    <a href="#"> Time:{{session.time}} </a>
+  </div>
+
+{% endfor %} 
+
+
+
+</section>
+{% endblock  %}

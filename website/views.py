@@ -221,6 +221,11 @@ def customer_index(request):
 def customer_view(request,pk):
   customer = Customer.objects.get(id=pk)
   services = Service.objects.all()
+  sessions = Session.objects.filter(student=pk)
+  time_credit = 0
+  time_done = sessions.aggregate(Sum('time'))['time__sum']
+  print("Total time done: ",time_done)
+  # t_credit_remaining = time_credit - time_done
   try:
     order = Order.objects.get(customer=customer,complete=False)
   except:
@@ -246,6 +251,7 @@ def customer_view(request,pk):
     'customer':customer,
     'services':services,
     'order':order,
+    'sessions':sessions,
   }
   return render(request,'website/customers/customer-view.html',context)
 
@@ -288,6 +294,7 @@ def add_du(request):
 def add_session(request):
   """ Add lessons for the instructor and student """
   form = SessionForm()
+  print('USER: ',request.user.staff)
   if request.method == "POST":
     students_request = request.POST.getlist('students')
     students=[]
@@ -312,6 +319,15 @@ def add_session(request):
     'form':form
   }
   return render(request,'website/school/add_session.html',context)
+
+def session_list(request):
+  sessions = Session.objects.all()
+  search_query = ''
+  context={
+    'sessions':sessions,
+    'search_query':search_query,
+  }
+  return render(request, 'website/school/session-list.html',context)
 
 @login_required
 def add_product(request):
@@ -382,19 +398,26 @@ def payment(request, pk):
   }
 
   if request.method == "POST":
+    
     form = PaymentForm(request.POST)
+    
+    print("Visa payment", request.POST['visa'])
     if form.is_valid():
       visa=form.cleaned_data['visa']
       cash=form.cleaned_data['cash']
       other=form.cleaned_data['other']
+      if 'visa-payment' in request.POST:
+        visa = order.get_cart_total
+      elif 'cash-payment' in request.POST:
+        cash = order.get_cart_total
       total = sum_payments(visa,cash,other)
-
+      print("Visa, Cash",visa,cash)
       """Check if the payment amount is equal to carts total"""
       if total == order.get_cart_total:
           payment = Payment(customer = customer,
-                      visa=form.cleaned_data['visa'],
-                      cash=form.cleaned_data['cash'],
-                      other=form.cleaned_data['other'],
+                      visa=visa,
+                      cash=cash,
+                      other=other,
                       comment=form.cleaned_data['comment'],
                       order= order)
           payment.save()

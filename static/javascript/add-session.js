@@ -4,11 +4,47 @@ const addStudent = document.getElementById('addStudent')
 const customerInput = document.getElementById('customerInput')
 const form = document.getElementById('form')
 const students = document.getElementById('session-students')
+const nrOfStudents= document.getElementById('nrOfStudents')
+
 let users = []
+
+let sStudents = []
+
+let studNr = 0
+
+const deleteStudentCardHandler = (id) => {
+  cardIndex = 0
+  for(const student in sStudents){
+    if(student.id = id){
+      break
+    }
+    cardIndex++
+  }
+  console.log(cardIndex)
+  // after finding remove item from the array of cardIndex
+  sStudents.splice(cardIndex, 1)
+  students.children[cardIndex].remove()
+}
+
+
+const createStudentCard = (name, id) =>{
+  const studentDiv= document.createElement('div')
+  studentDiv.setAttribute('class','student-label')
+  studentDiv.setAttribute('id',`${id}`)
+  studentDiv.innerHTML = `
+    <label for="${id}">${name}</label>
+    <input name='students' type="text" hidden value='${id}'/>
+    <i class='remove-button'><ion-icon name="close-outline"></ion-icon></i>
+  `
+
+  studentDiv.addEventListener('click',deleteStudentCardHandler)
+  
+  students.appendChild(studentDiv)
+}
 
 customerInput.addEventListener('input',(e)=>{
   const value = e.target.value
-  console.log(value)
+
 })
 
 console.log(customerInput.value)
@@ -31,28 +67,39 @@ xhr.onload = function(){
   })
 };
 
+let removeHandler = (e) => { 
+  console.log(e)
+}
+
+
 xhr.send();
 
 // get user input and select customer
 addStudent.addEventListener('click',()=>{
   let user = users.find(user => user.phone === customerInput.value)
   // create an element to the form with input set to customer id
-    let label = document.createElement('label')
-      label.setAttribute('for','student')
-      label.innerText = user.name
-  // create input element
-    let input = document.createElement('input')
-      input.setAttribute('value',user.id)
-      input.setAttribute('name','students')
-      input.textContent = user.name
-      input.hidden = true
-    // form.appendChild(input)
-    students.appendChild(label)
-    students.appendChild(input)
+    createStudentCard(user.name,user.id)
+    sStudents.push(user)
     customerInput.value = ''
 })
 
-// create an customer element
 
 
-// edit set to false
+
+
+
+
+
+// create add session button, that will make the form appear
+
+// cancel button would remove the button
+
+// show TOTALS
+
+// for each instructor
+// total hours done this week
+// total hours done this month 
+
+// for school
+// total hours done this week
+// total hours done this month 

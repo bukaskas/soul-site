@@ -27,6 +27,9 @@
   <script defer src={% static 'javascript/script.js' %}>
 
   </script>
+  <script defer src={% static 'javascript/effects.js' %}>
+
+  </script>
   
 </head>
 <body>
@@ -42,17 +45,27 @@
           <li><a class="main-nav-link" href="{% url "restaurant" %}">Restaurant</a></li>
           {% comment %} <li><a class="main-nav-link" href="{% url "accommodation" %}">Accommodation</a></li> {% endcomment %}
           <li><a class="main-nav-link nav-cta" href="{% url "home" %}">Home</a></li>
-          {% if request.user.is_authenticated %}
+          {% if request.user.is_superuser %}
           <li><a class="main-nav-link" href="{% url "payments"%}">Payments</a></li>
           <li><a class="main-nav-link" href="{% url "add-product"%}">Shop</a></li>
           <li><a class="main-nav-link" href="{% url "dayuse"%}">Beach Use</a></li>
-          <li><a class="main-nav-link" href="{% url "add-session"%}">Sessions</a></li>
+          {% elif request.user.staff or request.user.is_superuser %}
+          <li class="dropdown">
+            <button onclick="dropDown()" class="main-nav-link nav-cta" id='dropbtn'>Sessions</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="{% url "add-session" %}">Add-Session</a>
+              <a href="{% url "session-list" %}">Session list</a>
+            </div>
+          </li>
+         
           <li><a class="main-nav-link" href="{% url "customer-list"%}">Customers</a></li>
 
           <li><a class="main-nav-link nav-cta" href="{% url "logout" %}"><ion-icon name="person-circle-outline"></ion-icon>Log out</a></li>
           {% else %}
           <li><a class="main-nav-link nav-cta" href="{% url "login" %}"><ion-icon name="person-circle-outline"></ion-icon>Login</a></li>
           {% endif %}
+
+
         </ul>
     </nav>
     <button  class="btn--mobile-nav change-menu">

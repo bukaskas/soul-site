@@ -8,6 +8,7 @@
 
 
   Font heights: 
+
   Default: 1
 
   Font weights:
@@ -155,10 +156,12 @@ body{
   margin-bottom: 6.4rem;
 }
 
+
+/* BUTTONS */
+
 .button:link,
 .button:visited {
 display: inline-block;
-
 background-color: var(--main-color);
 color:#fff;
 font-size: 2rem;
@@ -169,6 +172,21 @@ text-decoration: none;
 /* Put transition on orginal "state" */
 transition: all 0.5s;
 }
+
+.button{
+display: inline-block;
+background-color: var(--main-color);
+color:#fff;
+font-size: 2rem;
+padding:1.6rem;
+padding:1.6rem 3.2rem;
+border-radius: 5px;
+text-decoration: none;
+border: none;
+/* Put transition on orginal "state" */
+transition: all 0.5s;
+}
+
 
 .button--full:link,
 .button--full:visited {
@@ -195,6 +213,54 @@ transition: all 0.5s;
   /* Trick to add border inside */
   box-shadow: inset 0 0 0 3px #fff;
 }
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 600;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: var(--shade);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 16rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
 /* * * * ** ** * * * * * * * * * * */
 /* ***** HELPER CLASS, SETTINGS ***** */
 /* * * * ** ** * * * * * * * * * * */

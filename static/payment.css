@@ -1,0 +1,35 @@
+.split-payment{
+  position:absolute;
+  font-size: 1.8rem;
+  transition: all 1s;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s ease-in;
+}
+
+.open{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  position:relative 
+}
+
+.hidden{
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.payment-type{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+#show-payments{
+
+  padding: 0.8rem;
+  background-color: aquamarine;
+}
+
+

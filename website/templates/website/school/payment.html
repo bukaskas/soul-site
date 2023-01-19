@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css_files %}
+
+  <link rel="stylesheet" href="{% static 'payment.css' %}">
+
+  <script defer src={% static 'javascript/payment.js' %}>
+  </script>
+
+{% endblock css_files %} 
+
+
 {% block content %}
 <section class="container">
 
@@ -8,28 +20,37 @@
 <div class="total-container payment-header">
   <h1 class='primary-heading customer-name total-header m-top'>Checkout page <ion-icon name="person-circle-outline"></ion-icon>{{customer.name}}</h1>
 
-  <div class="secondary-heading total-items total-block bold ">
-    Total to pay: EGP {{order.get_cart_total}}
+  <div class="secondary-heading total-items total-block bold" id="cart_total">
+    {{order.get_cart_total}}
   </div>
 </div>
 <div class="checkout-dashboard">
   <form method='POST' action="" class="container-custom form-container">
 
     {% csrf_token %}
+    <div class="split-payment">
+      {{form.visa.label_tag}}
+      {{form.visa}}
 
-    {{form.visa.label_tag}}
-    {{form.visa}}
+      {{form.cash.label_tag}}
+      {{form.cash}}
 
-    {{form.cash.label_tag}}
-    {{form.cash}}
+      {{form.other.label_tag}}
+      {{form.other}}
 
-    {{form.other.label_tag}}
-    {{form.other}}
+      {{form.comment}}
+    </div>
+
+    <div class="payment-type" id='payment-type'>
+      <input onClick='visaPayment' type="submit" value="Visa" name="visa-payment">
+      <input onClick='cashPayment' type="submit" value="Cash" name="cash-payment">
+    </div>
+
+    
+    <input class="split-payment" type="submit" value="Pay" name="split-payment">
+    <i id='show-payments'>Different type payment</i>
 
 
-    {{form.comment}}
-
-    <input type="submit" value="Pay">
   </form>
 </div>
 

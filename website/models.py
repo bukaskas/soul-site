@@ -168,6 +168,11 @@ class Staff(models.Model):
 
   def is_instructor(self):
     return self.type in {self.INSTRUCTOR, self.ASSISTANT}
+  
+  # @property
+  # def commission(self):
+  #   pass
+
 class Session(models.Model):
   service = models.ForeignKey(Service, on_delete=models.SET_NULL,null=True)
   student = models.ManyToManyField(Customer,related_name='students')
@@ -177,3 +182,6 @@ class Session(models.Model):
   def __str__(self):
     return f"Students: {self.student}, Instructor: {self.staff}"
   
+  @property
+  def students(self):
+    return [stud for stud in self.student.all()]

@@ -61,28 +61,30 @@
   <div class="form-info heading-secondary"><span>Pleas fill information below to finish registration</span></div>
   <form method='POST' action="" class="container-custom form-container">
 
-    {% csrf_token %}
+      {% csrf_token %}
 
-    {{form.name.label_tag}}
-    {{form.name}}
+      {{form.name.label_tag}}
+      {{form.name}}
 
-    {{form.phone_nr.label_tag}}
-    {{form.phone_nr}}
+      {{form.phone_nr.label_tag}}
+      {{form.phone_nr}}
 
-    {{form.email.label_tag}}
-    {{form.email}}
+      {{form.email.label_tag}}
+      {{form.email}}
 
-    {{form.gender.label_tag}}
-<div class="gender">
-    {{form.gender}}
-</div>
-    {{form.weight.label_tag}}
-    {{form.weight}}
+      {{form.gender.label_tag}}
+      
+  <div class="gender">
+      {{form.gender}}
+  </div>
 
-<div class="terms">
-   {{form.terms.label_tag}}
-   {{form.terms}}
-</div>
+      {{form.weight.label_tag}}
+      {{form.weight}}
+
+  <div class="terms">
+      {{form.terms.label_tag}}
+      {{form.terms}}
+  </div>
 
 
     <input type="submit" value="Sign up">

@@ -4,6 +4,8 @@
 
 {% block css_files %}
 
+  <link rel="stylesheet" href="{% static 'sessions.css' %}">
+
   <script defer src={% static 'javascript/add-session.js' %}>
   </script>
 
@@ -13,31 +15,50 @@
 
 
 
-
-<label for="customer">Type name or phone number:</label>
-<input type="text" name='customer' list='customerList' data-search id='customerInput'>
-<datalist id='customerList'>
-</datalist>
-<button id='addStudent'>Add</button>
-
+<div class="form-container">
+  <label for="customer">Type name or phone number:</label>
+  <input type="text" name='customer' list='customerList' data-search id='customerInput' class='input'>
+  <datalist id='customerList'>
+  </datalist>
+  <button id='addStudent'>Add</button>
+</div>
 <form action="{% url 'add-session' %}" method='POST' id='form'>
   {% csrf_token %}
   {% comment %} search query set {% endcomment %}
-  <div id='session-students'> 
-  
-  </div>
-  {{form.lesson.label_tag}}
-  {{form.lesson}}
+  <div class="form-container">
+    <label for="session-students">Student list:</label>
+    <p id='nrOfStudents'></p>
+    <div id='session-students'> 
+    <!-- Inserts session students here from add-session.js -->
+    </div>   
 
-  {{forms.staff.label_tag}}
-  {{form.staff}}
+      {{form.lesson.label_tag}}
+      {{form.lesson}}
+  <!-- if no instuctor looged in -->
+  {% if request.user.is_superuser %}
+      <label for="id_staff">Instructor</label>
+      {{form.staff}}
+  {% elif request.user.staff %}
+    <!-- set value if instuctor looged in -->
+  <label for="id_staff">Instructor: {{request.user.staff.name}}</label>
+  <input id="id_staff" type="text" name="staff" value={{request.user.staff.id}} hidden>
 
-  {{form.hours.label_tag}}
-  {{form.hours}}
+  {% endif %}
+    <div class="time-row">
+      <div class="time-hours">
 
-  {{form.minutes.label_tag}}
-  {{form.minutes}}
-  <input type="submit" value='REGISTER'>
+        {{form.hours.label_tag}}
+        {{form.hours}}
+       
+      </div>
+
+      <div class="time-hours">
+        {{form.minutes.label_tag}}
+        {{form.minutes}}
+      </div>
+    </div>
+  <input type="submit" value='REGISTER' class="button ">
+</div>
 </form>
 
 {% endblock content %}

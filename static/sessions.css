@@ -1,0 +1,26 @@
+:root{
+  --main-color:#228580;
+  --shade:#14504d;
+  --tint:#a7cecc;
+}
+
+.student-label{
+  padding:0.2rem;
+  border: 1px solid var(--tint);
+}
+
+#nrOfStudents{
+  font-size: 0.6rem;
+  font-weight: 400;
+}
+
+.remove-button{
+  background-color: var(--tint);
+  font-size: 0.8rem;
+  border:1px solid var(--shade);
+  border-radius:100%;
+  padding:0.8rem;
+
+
+
+}

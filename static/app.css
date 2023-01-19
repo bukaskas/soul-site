@@ -498,6 +498,7 @@
   
   .form-container{
     max-width: 45rem;
+    margin: 0 auto;
   }
   
   .phone-number{
@@ -516,8 +517,13 @@
     flex-direction: column;
     gap: 1.2rem;
   }
+
+  .time-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
   
-  input[type='text'],input[type='email'],input[type='number']{
+  .sign-up{
     box-sizing: border-box;
     border:none;
     border-bottom: 2px solid #333;
@@ -525,19 +531,14 @@
     font-size:1.8rem;
     transition: all 0.5s ease-in;
   }
-  input[type='text']:focus{
+  .sign-up:focus{
     font-size: 2.4rem;
     outline: none;
     border-bottom: 2px solid #228580;
   }
   
-  input[type='email']:focus{
-    font-size: 2.4rem;
-    outline: none;
-    border-bottom: 2px solid #228580;
-  }
   
-  input[type='submit']{
+  .submit{
     position:relative;
     font-size: 2.4rem;
     font-weight: 600;
@@ -559,26 +560,12 @@
     padding:1rem;
   }
   
-  input[type='checkbox']{
-  
-  }
-  
-  input[type='radio']{
-    
-    height:1.8rem;
-    width: 1.8rem;
-  }
 
 label {
     padding-right: 1.8rem;
     font-weight: 600;
   }
 
-  /* terms checkbox */
-  input[name='terms']{
-    height:3.2rem;
-    width:3.2rem;
-  }
   
   .terms{
     display:flex;
@@ -938,4 +925,12 @@ label {
   flex-direction: column;
   align-items: center;
   row-gap: 1.2rem;
+}
+
+/* ************************* */
+     /*  add session */
+/* ************************* */
+  
+.input {
+
 }

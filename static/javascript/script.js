@@ -32,3 +32,7 @@ function checkFlexGap() {
 }
 checkFlexGap();
 
+// Drop down button functionality
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
